@@ -1,3 +1,7 @@
+using Data.Contexts;
+using Microsoft.EntityFrameworkCore;
+using Service.Extensions;
+
 namespace HotelReservation
 {
     public class Program
@@ -8,7 +12,8 @@ namespace HotelReservation
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddDbContext<HotelDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnStr")));
+            builder.Services.AddExtensions();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
