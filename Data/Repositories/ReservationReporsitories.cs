@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity.Repositories
+namespace Data.Repositories
 {
-    public class ReservationReporsitories : IReservationRepositories
+    public class ReservationReporsitories : IReservationRepository
     {
 
     }

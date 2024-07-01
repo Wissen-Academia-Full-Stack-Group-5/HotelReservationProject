@@ -5,9 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity.Repositories
+namespace Data.Repositories
 {
-    public class HotelRepositories : IHotelRepositories
+    public class RoomRepositories : IRoomRepository
     {
+
     }
 }

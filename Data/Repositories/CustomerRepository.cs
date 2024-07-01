@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity.Repositories
+namespace Data.Repositories
 {
-    public class CustomerRepository : ICustomerRepositories
+    public class CustomerRepository : ICustomerRepository
     {
-        private readonly CustomerRepository repository;
+        private readonly CustomerRepository _customerRepo;
 
 
 
