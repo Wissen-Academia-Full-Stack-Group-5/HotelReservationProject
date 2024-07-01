@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(HotelDbContext))]
-    [Migration("20240701093342_Initial")]
-    partial class Initial
+    [Migration("20240701125708_SeedDataV3")]
+    partial class SeedDataV3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -137,17 +137,11 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Entity.Entites.Customer", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -157,9 +151,6 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -168,18 +159,36 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CustomerId");
 
                     b.ToTable("Customers");
+
+                    b.HasData(
+                        new
+                        {
+                            CustomerId = 1,
+                            Email = "ahmet.yilmaz@example.com",
+                            FirstName = "Ahmet",
+                            LastName = "Yılmaz",
+                            Phone = "0532-123-4567"
+                        },
+                        new
+                        {
+                            CustomerId = 2,
+                            Email = "ayse.kara@example.com",
+                            FirstName = "Ayşe",
+                            LastName = "Kara",
+                            Phone = "0543-987-6543"
+                        });
                 });
 
             modelBuilder.Entity("Entity.Entites.Hotel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("HotelId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HotelId"));
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -193,18 +202,9 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("HotelId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -213,33 +213,46 @@ namespace Data.Migrations
                     b.Property<double>("Rating")
                         .HasColumnType("float");
 
-                    b.HasKey("Id");
+                    b.HasKey("HotelId");
 
                     b.ToTable("Hotels");
+
+                    b.HasData(
+                        new
+                        {
+                            HotelId = 1,
+                            Address = "İstiklal Caddesi No:123",
+                            City = "İstanbul",
+                            Country = "Türkiye",
+                            Description = "Şehrin merkezinde lüks bir otel.",
+                            Name = "Büyük Otel",
+                            Rating = 4.5
+                        },
+                        new
+                        {
+                            HotelId = 2,
+                            Address = "Sahil Yolu No:456",
+                            City = "Antalya",
+                            Country = "Türkiye",
+                            Description = "Deniz manzaralı güzel bir otel.",
+                            Name = "Deniz Manzaralı Otel",
+                            Rating = 4.7000000000000002
+                        });
                 });
 
             modelBuilder.Entity("Entity.Entites.Payment", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("PaymentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentId"));
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("PaymentId")
-                        .HasColumnType("int");
 
                     b.Property<string>("PaymentMethod")
                         .IsRequired()
@@ -248,20 +261,38 @@ namespace Data.Migrations
                     b.Property<int>("ReservationId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("PaymentId");
 
                     b.HasIndex("ReservationId");
 
                     b.ToTable("Payments");
+
+                    b.HasData(
+                        new
+                        {
+                            PaymentId = 1,
+                            Amount = 1000.00m,
+                            PaymentDate = new DateTime(2024, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PaymentMethod = "Kredi Kartı",
+                            ReservationId = 1
+                        },
+                        new
+                        {
+                            PaymentId = 2,
+                            Amount = 2000.00m,
+                            PaymentDate = new DateTime(2024, 6, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PaymentMethod = "Nakit",
+                            ReservationId = 2
+                        });
                 });
 
             modelBuilder.Entity("Entity.Entites.Reservation", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ReservationId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReservationId"));
 
                     b.Property<DateTime>("CheckInDate")
                         .HasColumnType("datetime2");
@@ -269,16 +300,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("CheckOutDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ReservationId")
                         .HasColumnType("int");
 
                     b.Property<string>("ReservationStatus")
@@ -291,25 +313,44 @@ namespace Data.Migrations
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ReservationId");
 
                     b.HasIndex("CustomerId");
 
                     b.HasIndex("RoomId");
 
                     b.ToTable("Reservations");
+
+                    b.HasData(
+                        new
+                        {
+                            ReservationId = 1,
+                            CheckInDate = new DateTime(2024, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CheckOutDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CustomerId = 1,
+                            ReservationStatus = "Onaylandı",
+                            RoomId = 1,
+                            TotalPrice = 1500.00m
+                        },
+                        new
+                        {
+                            ReservationId = 2,
+                            CheckInDate = new DateTime(2024, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CheckOutDate = new DateTime(2024, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CustomerId = 2,
+                            ReservationStatus = "Onaylandı",
+                            RoomId = 3,
+                            TotalPrice = 4000.00m
+                        });
                 });
 
             modelBuilder.Entity("Entity.Entites.Room", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("RoomId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoomId"));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -321,14 +362,8 @@ namespace Data.Migrations
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("RoomId")
-                        .HasColumnType("int");
 
                     b.Property<string>("RoomNumber")
                         .IsRequired()
@@ -338,11 +373,43 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("RoomId");
 
                     b.HasIndex("HotelId");
 
                     b.ToTable("Rooms");
+
+                    b.HasData(
+                        new
+                        {
+                            RoomId = 1,
+                            Description = "Konforlu tek kişilik oda",
+                            HotelId = 1,
+                            IsAvailable = true,
+                            Price = 750.00m,
+                            RoomNumber = "101",
+                            Type = "Tek Kişilik"
+                        },
+                        new
+                        {
+                            RoomId = 2,
+                            Description = "Geniş çift kişilik oda",
+                            HotelId = 1,
+                            IsAvailable = true,
+                            Price = 1200.00m,
+                            RoomNumber = "102",
+                            Type = "Çift Kişilik"
+                        },
+                        new
+                        {
+                            RoomId = 3,
+                            Description = "Deniz manzaralı tek kişilik oda",
+                            HotelId = 2,
+                            IsAvailable = true,
+                            Price = 850.00m,
+                            RoomNumber = "201",
+                            Type = "Tek Kişilik"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

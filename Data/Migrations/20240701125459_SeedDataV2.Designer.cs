@@ -4,6 +4,7 @@ using Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(HotelDbContext))]
-    partial class HotelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240701125459_SeedDataV2")]
+    partial class SeedDataV2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,18 +167,18 @@ namespace Data.Migrations
                         new
                         {
                             CustomerId = 1,
-                            Email = "ahmet.yilmaz@example.com",
-                            FirstName = "Ahmet",
-                            LastName = "Yılmaz",
-                            Phone = "0532-123-4567"
+                            Email = "john.doe@example.com",
+                            FirstName = "John",
+                            LastName = "Doe",
+                            Phone = "555-1234"
                         },
                         new
                         {
                             CustomerId = 2,
-                            Email = "ayse.kara@example.com",
-                            FirstName = "Ayşe",
-                            LastName = "Kara",
-                            Phone = "0543-987-6543"
+                            Email = "jane.smith@example.com",
+                            FirstName = "Jane",
+                            LastName = "Smith",
+                            Phone = "555-5678"
                         });
                 });
 
@@ -218,21 +221,21 @@ namespace Data.Migrations
                         new
                         {
                             HotelId = 1,
-                            Address = "İstiklal Caddesi No:123",
-                            City = "İstanbul",
-                            Country = "Türkiye",
-                            Description = "Şehrin merkezinde lüks bir otel.",
-                            Name = "Büyük Otel",
+                            Address = "123 Main St",
+                            City = "Springfield",
+                            Country = "USA",
+                            Description = "A luxurious hotel in the heart of the city.",
+                            Name = "Grand Hotel",
                             Rating = 4.5
                         },
                         new
                         {
                             HotelId = 2,
-                            Address = "Sahil Yolu No:456",
-                            City = "Antalya",
-                            Country = "Türkiye",
-                            Description = "Deniz manzaralı güzel bir otel.",
-                            Name = "Deniz Manzaralı Otel",
+                            Address = "456 Beach Ave",
+                            City = "Miami",
+                            Country = "USA",
+                            Description = "A beautiful hotel with a view of the ocean.",
+                            Name = "Ocean View",
                             Rating = 4.7000000000000002
                         });
                 });
@@ -268,17 +271,17 @@ namespace Data.Migrations
                         new
                         {
                             PaymentId = 1,
-                            Amount = 1000.00m,
+                            Amount = 100.00m,
                             PaymentDate = new DateTime(2024, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PaymentMethod = "Kredi Kartı",
+                            PaymentMethod = "Credit Card",
                             ReservationId = 1
                         },
                         new
                         {
                             PaymentId = 2,
-                            Amount = 2000.00m,
+                            Amount = 200.00m,
                             PaymentDate = new DateTime(2024, 6, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PaymentMethod = "Nakit",
+                            PaymentMethod = "Cash",
                             ReservationId = 2
                         });
                 });
@@ -325,9 +328,9 @@ namespace Data.Migrations
                             CheckInDate = new DateTime(2024, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CheckOutDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CustomerId = 1,
-                            ReservationStatus = "Onaylandı",
+                            ReservationStatus = "Confirmed",
                             RoomId = 1,
-                            TotalPrice = 1500.00m
+                            TotalPrice = 150.00m
                         },
                         new
                         {
@@ -335,9 +338,9 @@ namespace Data.Migrations
                             CheckInDate = new DateTime(2024, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CheckOutDate = new DateTime(2024, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CustomerId = 2,
-                            ReservationStatus = "Onaylandı",
+                            ReservationStatus = "Confirmed",
                             RoomId = 3,
-                            TotalPrice = 4000.00m
+                            TotalPrice = 400.00m
                         });
                 });
 
@@ -380,32 +383,32 @@ namespace Data.Migrations
                         new
                         {
                             RoomId = 1,
-                            Description = "Konforlu tek kişilik oda",
+                            Description = "Cozy single room",
                             HotelId = 1,
                             IsAvailable = true,
-                            Price = 750.00m,
+                            Price = 75.50m,
                             RoomNumber = "101",
-                            Type = "Tek Kişilik"
+                            Type = "Single"
                         },
                         new
                         {
                             RoomId = 2,
-                            Description = "Geniş çift kişilik oda",
+                            Description = "Spacious double room",
                             HotelId = 1,
                             IsAvailable = true,
-                            Price = 1200.00m,
+                            Price = 120.00m,
                             RoomNumber = "102",
-                            Type = "Çift Kişilik"
+                            Type = "Double"
                         },
                         new
                         {
                             RoomId = 3,
-                            Description = "Deniz manzaralı tek kişilik oda",
+                            Description = "Single room with a sea view",
                             HotelId = 2,
                             IsAvailable = true,
-                            Price = 850.00m,
+                            Price = 85.00m,
                             RoomNumber = "201",
-                            Type = "Tek Kişilik"
+                            Type = "Single"
                         });
                 });
 

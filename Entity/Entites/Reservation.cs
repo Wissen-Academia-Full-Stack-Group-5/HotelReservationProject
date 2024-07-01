@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Entity.Entites
 {
-    public class Reservation : BaseEntity
+    public class Reservation 
     {
         public int ReservationId { get; set; }
-        public int CustomerId { get; set; } // Foreign Key
-        public int RoomId { get; set; } // Foreign Key
+        public int CustomerId { get; set; }
+        public int RoomId { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
         public decimal TotalPrice { get; set; }
