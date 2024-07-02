@@ -11,10 +11,24 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Service\Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\themes\.DS_Store" />
+    <None Include="wwwroot\themes\css\.DS_Store" />
+    <None Include="wwwroot\themes\css\bootstrap\.DS_Store" />
+    <None Include="wwwroot\themes\css\css\.DS_Store" />
+    <None Include="wwwroot\themes\fonts\.DS_Store" />
+    <None Include="wwwroot\themes\fonts\flaticon\.DS_Store" />
+    <None Include="wwwroot\themes\fonts\ionicons\fonts\.DS_Store" />
+    <None Include="wwwroot\themes\images\.DS_Store" />
+    <None Include="wwwroot\themes\js\.DS_Store" />
+    <None Include="wwwroot\themes\scss\.DS_Store" />
   </ItemGroup>
 
 </Project>

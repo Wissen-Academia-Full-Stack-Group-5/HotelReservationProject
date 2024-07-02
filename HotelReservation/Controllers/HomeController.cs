@@ -17,6 +17,10 @@ namespace HotelReservation.Controllers
         {
             return View();
         }
+        public IActionResult Filter()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
