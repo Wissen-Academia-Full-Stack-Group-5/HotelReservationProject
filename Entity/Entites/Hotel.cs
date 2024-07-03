@@ -17,8 +17,9 @@ namespace Entity.Entites
         public string Country { get; set; }
         public string Description { get; set; }
         public double Rating { get; set; }
+		public string PictureUrl { get; set; }
 
-        // Navigation Property
-        public ICollection<Room> Rooms { get; set; }
+		// Navigation Property
+		public ICollection<Room> Rooms { get; set; }
     }
 }

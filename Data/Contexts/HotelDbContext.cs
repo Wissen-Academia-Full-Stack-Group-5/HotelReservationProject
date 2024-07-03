@@ -39,7 +39,7 @@ namespace Data.Contexts
                 .WithOne(p => p.Reservation)
                 .HasForeignKey(p => p.ReservationId);
 
-            base.OnModelCreating(modelBuilder);
+            
 
             // Seed data
             modelBuilder.Entity<Hotel>().HasData(
@@ -51,8 +51,11 @@ namespace Data.Contexts
                     City = "İstanbul",
                     Country = "Türkiye",
                     Description = "Şehrin merkezinde lüks bir otel.",
-                    Rating = 4.5
-                },
+                    Rating = 4.5,
+                    PictureUrl="/images/hotel-1.jpg"
+                    
+					//PictureUrl = "/images/7.jpg"
+				},
                 new Hotel
                 {
                     HotelId = 2,
@@ -61,8 +64,9 @@ namespace Data.Contexts
                     City = "Antalya",
                     Country = "Türkiye",
                     Description = "Deniz manzaralı güzel bir otel.",
-                    Rating = 4.7
-                }
+                    Rating = 4.7,
+					PictureUrl = "/images/hotel-2.jpg"
+				}
             );
 
             modelBuilder.Entity<Room>().HasData(
@@ -159,7 +163,7 @@ namespace Data.Contexts
                 }
             );
 
-
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

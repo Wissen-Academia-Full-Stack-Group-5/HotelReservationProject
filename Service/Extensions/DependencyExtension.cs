@@ -1,7 +1,15 @@
 ﻿using Data.Contexts;
 using Data.Identity;
+using Data.Repositories;
+using Data.UnitOfWorks;
+using Entity.Entites;
+using Entity.Repositories;
+using Entity.Services;
+using Entity.UnitOfWorks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Service.Mapping;
+using Service.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +52,13 @@ namespace Service.Extensions
                     HttpOnly = true,
                 };
             });
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IHotelService, HotelService>();
+           
 
+
+            services.AddAutoMapper(typeof(MappingProfile));
         }
 
     }

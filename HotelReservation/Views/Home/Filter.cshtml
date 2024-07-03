@@ -1,10 +1,11 @@
-﻿
+﻿@using Entity.ViewModels
+
 @{
     ViewData["Title"] = "Filter";
     Layout = "~/Views/Shared/_LayoutHotel.cshtml";
 }
-
-<div class="hero-wrap js-fullheight" style="background-image: url('~/themes/images/bg_1.jpg');">
+@model List<HotelViewModel>
+<div class="hero-wrap js-fullheight" style="background-image: url('/themes/images/bg_1.jpg');">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
@@ -100,48 +101,52 @@
 			</div><!-- END-->
 			<div class="col-lg-9">
 				<div class="row">
-					<div class="col-sm col-md-6 col-lg-4 ftco-animate">
-						<div class="destination">
-							<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(wwwroot/themes/images/hotel-1.jpg);">
-                                
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-link"></span>
-								</div>
-							</a>
-							<div class="text p-3">
-								<div class="d-flex">
-									<div class="one">
-										<h3><a href="#">New Orleans, LA</a></h3>
-										<p class="rate">
-											<i class="icon-star"></i>
-											<i class="icon-star"></i>
-											<i class="icon-star"></i>
-											<i class="icon-star"></i>
-											<i class="icon-star-o"></i>
-											<span>8 Rating</span>
-										</p>
+					@foreach (var item in Model)
+					{
+						<div class="col-sm col-md-6 col-lg-4 ftco-animate">
+							<div class="destination">
+								<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(@item.PictureUrl);">
+
+									<div class="icon d-flex justify-content-center align-items-center">
+										<span class="icon-link"></span>
 									</div>
-									<div class="two">
-										<span class="price per-price">$40<br><small>/night</small></span>
+								</a>
+								<div class="text p-3">
+									<div class="d-flex">
+										<div class="one">
+											<h3><a href="#">@item.Name</a></h3>
+											@* <p class="rate">
+										<i class="icon-star"></i>
+										<i class="icon-star"></i>
+										<i class="icon-star"></i>
+										<i class="icon-star"></i>
+										<i class="icon-star-o"></i>
+										<span>8 Rating</span>
+										</p> *@
+										</div>
+										<div class="two">
+											<span class="price per-price">$40<br><small>/night</small></span>
+										</div>
 									</div>
+									<p>@item.Description</p>
+									<hr>
+									<p class="bottom-area d-flex">
+										<span><i class="icon-map-o"></i> @item.Address</span>
+										<span class="ml-auto"><a href="#">Book Now</a></span>
+									</p>
 								</div>
-								<p>Far far away, behind the word mountains, far from the countries</p>
-								<hr>
-								<p class="bottom-area d-flex">
-									<span><i class="icon-map-o"></i> Miami, Fl</span>
-									<span class="ml-auto"><a href="#">Book Now</a></span>
-								</p>
 							</div>
 						</div>
-					</div>
+					}
 					
 					
-								<p>Far far away, behind the word mountains, far from the countries</p>
+					
+								@* <p>Far far away, behind the word mountains, far from the countries</p>
 								<hr>
 								<p class="bottom-area d-flex">
 									<span><i class="icon-map-o"></i> Miami, Fl</span>
 									<span class="ml-auto"><a href="#">Book Now</a></span>
-								</p>
+								</p> *@
 							</div>
 						</div>
 					</div>

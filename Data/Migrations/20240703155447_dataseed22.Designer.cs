@@ -4,6 +4,7 @@ using Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(HotelDbContext))]
-    partial class HotelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240703155447_dataseed22")]
+    partial class dataseed22
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -207,10 +210,6 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PictureUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("Rating")
                         .HasColumnType("float");
 
@@ -227,7 +226,6 @@ namespace Data.Migrations
                             Country = "Türkiye",
                             Description = "Şehrin merkezinde lüks bir otel.",
                             Name = "Büyük Otel",
-                            PictureUrl = "/images/hotel-1.jpg",
                             Rating = 4.5
                         },
                         new
@@ -238,7 +236,6 @@ namespace Data.Migrations
                             Country = "Türkiye",
                             Description = "Deniz manzaralı güzel bir otel.",
                             Name = "Deniz Manzaralı Otel",
-                            PictureUrl = "/images/hotel-2.jpg",
                             Rating = 4.7000000000000002
                         });
                 });

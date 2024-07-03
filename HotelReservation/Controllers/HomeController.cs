@@ -1,3 +1,4 @@
+using Entity.Services;
 using HotelReservation.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -7,19 +8,22 @@ namespace HotelReservation.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHotelService _hotelService;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+		public HomeController(ILogger<HomeController> logger, IHotelService hotelService)
+		{
+			_logger = logger;
+			_hotelService = hotelService;
+		}
 
-        public IActionResult Index()
+		public IActionResult Index()
         {
             return View();
         }
-        public IActionResult Filter()
+        public async Task<IActionResult> Filter()
         {
-            return View();
+			var list = await _hotelService.GetAll();
+			return View(list);
         }
 
         public IActionResult Privacy()

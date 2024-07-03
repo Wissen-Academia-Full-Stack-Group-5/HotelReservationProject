@@ -16,23 +16,23 @@ namespace Data.Repositories
         private readonly HotelDbContext _context;
         private DbSet<T> _dbSet;
 
-        public Repository(HotelDbContext context, DbSet<T> dbSet)
+        public Repository(HotelDbContext context)
         {
             _context = context;
-            _dbSet = dbSet;
+            _dbSet = _context.Set<T>();
         }
 
 		public async Task Add(T entity)
 		{
 			await _dbSet.AddAsync(entity);
-			_context.SaveChangesAsync();
+			
 		}
 
 		public void Delete(int id)
 		{
 			var entity = _dbSet.Find(id);
 			_dbSet.Remove(entity);
-			_context.SaveChangesAsync();
+			
 		}
 
 		public void Delete(T entity)
@@ -47,7 +47,7 @@ namespace Data.Repositories
 			{
 				_dbSet.Remove(entity);
 			}
-			_context.SaveChanges();
+			
 		}
 
 		public async Task<T> Get(Expression<Func<T, bool>> filter)
@@ -73,7 +73,7 @@ namespace Data.Repositories
 		public void Update(T entity)
 		{
 			_dbSet.Update(entity);
-			_context.SaveChangesAsync();
+			
 		}
 	}
 }
