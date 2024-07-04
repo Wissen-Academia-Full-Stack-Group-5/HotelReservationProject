@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Data.Identity;
 using Entity.Entites;
 using Entity.Services;
 using Entity.ViewModels;
@@ -15,7 +16,9 @@ namespace Service.Mapping
         public MappingProfile()
         {
          CreateMap<Hotel, HotelViewModel>().ReverseMap();
-           
-        }
+			CreateMap<AppUser, UserViewModel>().ReverseMap();
+			CreateMap<AppUser, LoginViewModel>().ReverseMap();
+
+		}
     }
 }

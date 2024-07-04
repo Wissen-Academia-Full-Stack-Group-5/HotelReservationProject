@@ -55,10 +55,10 @@ namespace Service.Extensions
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IHotelService, HotelService>();
-           
+			services.AddScoped(typeof(IAccountService), typeof(AccountService));
 
 
-            services.AddAutoMapper(typeof(MappingProfile));
+			services.AddAutoMapper(typeof(MappingProfile));
         }
 
     }
