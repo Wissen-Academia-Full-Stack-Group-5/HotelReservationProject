@@ -13,5 +13,9 @@ namespace Entity.Services
 		Task<string> FindByNameAsync(LoginViewModel model);
 
 		Task<UserViewModel> Find(string username);
-	}
+        Task<string> CreateRoleAsync(RoleViewModel model);
+        Task<List<RoleViewModel>> GetAllRoles();
+
+        Task SignOutAsync();
+    }
 }

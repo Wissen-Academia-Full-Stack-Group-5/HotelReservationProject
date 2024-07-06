@@ -3,6 +3,7 @@ using Data.Identity;
 using Entity.Services;
 using Entity.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,31 @@ namespace Service.Services
 			_mapper = mapper;
 		}
 
-		public async Task<string> CreateUserAsync(RegisterViewModel model)
+        public async Task<string> CreateRoleAsync(RoleViewModel model)
+        {
+            string message = string.Empty;
+            AppRole role = new AppRole()
+            {
+                Name = model.Name,
+                Descriotion = model.Descriotion
+            };
+            var identityResult = await _roleManager.CreateAsync(role);
+
+            if (identityResult.Succeeded)
+            {
+                message = "OK";
+            }
+            else
+            {
+                foreach (var error in identityResult.Errors)
+                {
+                    message = error.Description;
+                }
+            }
+            return message;
+        }
+
+        public async Task<string> CreateUserAsync(RegisterViewModel model)
 		{
 			string message = string.Empty;
 			AppUser user = new AppUser()
@@ -71,5 +96,16 @@ namespace Service.Services
 			if (signInResult.Succeeded) { message = "OK"; }
 			return message;
 		}
-	}
+
+        public async Task<List<RoleViewModel>> GetAllRoles()
+        {
+            var roles = await _roleManager.Roles.ToListAsync();
+            return _mapper.Map<List<RoleViewModel>>(roles);
+        }
+
+        public async Task SignOutAsync()
+        {
+            await _signInManager.SignOutAsync();
+        }
+    }
 }
