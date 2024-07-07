@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Data.UnitOfWork
 {
-    public class UnitOfWork : IUnitOfWorks
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly HotelDbContext _context;
         
@@ -37,14 +37,14 @@ namespace Data.UnitOfWork
 
         public void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!this._disposed)
             {
                 if (disposing)
                 {
                     _context.Dispose();
                 }
             }
-            this.disposed = true;
+            this._disposed = true;
         }
         public virtual void Dispose()
         {

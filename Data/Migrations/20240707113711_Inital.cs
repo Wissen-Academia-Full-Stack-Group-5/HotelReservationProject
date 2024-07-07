@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Inital : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -82,7 +84,8 @@ namespace Data.Migrations
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Rating = table.Column<double>(type: "float", nullable: false)
+                    Rating = table.Column<double>(type: "float", nullable: false),
+                    PictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -274,27 +277,48 @@ namespace Data.Migrations
             migrationBuilder.InsertData(
                 table: "Customers",
                 columns: new[] { "CustomerId", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 1, "john.doe@example.com", "John", "Doe", "555-1234" });
+                values: new object[,]
+                {
+                    { 1, "ahmet.yilmaz@example.com", "Ahmet", "Yılmaz", "0532-123-4567" },
+                    { 2, "ayse.kara@example.com", "Ayşe", "Kara", "0543-987-6543" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Hotels",
-                columns: new[] { "HotelId", "Address", "City", "Country", "Description", "Name", "Rating" },
-                values: new object[] { 1, "123 Main St", "Springfield", "USA", "A luxurious hotel in the heart of the city.", "Grand Hotel", 4.5 });
+                columns: new[] { "HotelId", "Address", "City", "Country", "Description", "Name", "PictureUrl", "Rating" },
+                values: new object[,]
+                {
+                    { 1, "İstiklal Caddesi No:123", "İstanbul", "Türkiye", "Şehrin merkezinde lüks bir otel.", "Büyük Otel", "/images/hotel-1.jpg", 4.5 },
+                    { 2, "Sahil Yolu No:456", "Antalya", "Türkiye", "Deniz manzaralı güzel bir otel.", "Deniz Manzaralı Otel", "/images/hotel-2.jpg", 4.7000000000000002 }
+                });
 
             migrationBuilder.InsertData(
                 table: "Rooms",
                 columns: new[] { "RoomId", "Description", "HotelId", "IsAvailable", "Price", "RoomNumber", "Type" },
-                values: new object[] { 1, "Cozy single room", 1, true, 75.50m, "101", "Single" });
+                values: new object[,]
+                {
+                    { 1, "Konforlu tek kişilik oda", 1, true, 750.00m, "101", "Tek Kişilik" },
+                    { 2, "Geniş çift kişilik oda", 1, true, 1200.00m, "102", "Çift Kişilik" },
+                    { 3, "Deniz manzaralı tek kişilik oda", 2, true, 850.00m, "201", "Tek Kişilik" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Reservations",
                 columns: new[] { "ReservationId", "CheckInDate", "CheckOutDate", "CustomerId", "ReservationStatus", "RoomId", "TotalPrice" },
-                values: new object[] { 1, new DateTime(2024, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Confirmed", 1, 500m });
+                values: new object[,]
+                {
+                    { 1, new DateTime(2024, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Onaylandı", 1, 1500.00m },
+                    { 2, new DateTime(2024, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Onaylandı", 3, 4000.00m }
+                });
 
             migrationBuilder.InsertData(
                 table: "Payments",
                 columns: new[] { "PaymentId", "Amount", "PaymentDate", "PaymentMethod", "ReservationId" },
-                values: new object[] { 1, 10000m, new DateTime(2024, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "Credit Card", 1 });
+                values: new object[,]
+                {
+                    { 1, 1000.00m, new DateTime(2024, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "Kredi Kartı", 1 },
+                    { 2, 2000.00m, new DateTime(2024, 6, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nakit", 2 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
