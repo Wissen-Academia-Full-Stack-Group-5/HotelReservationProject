@@ -19,6 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\sneat\.github\workflows\handle-new-issue-comment.yml" />
+    <None Include="wwwroot\sneat\.github\workflows\handle-new-issue.yml" />
+    <None Include="wwwroot\sneat\.github\workflows\issue-staler.yml" />
     <None Include="wwwroot\themes\.DS_Store" />
     <None Include="wwwroot\themes\css\.DS_Store" />
     <None Include="wwwroot\themes\css\bootstrap\.DS_Store" />
@@ -29,6 +32,11 @@
     <None Include="wwwroot\themes\images\.DS_Store" />
     <None Include="wwwroot\themes\js\.DS_Store" />
     <None Include="wwwroot\themes\scss\.DS_Store" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
 
 </Project>

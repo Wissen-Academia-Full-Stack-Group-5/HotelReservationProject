@@ -43,7 +43,23 @@
 	          <li class="nav-item"><a href="places.html" class="nav-link">Places</a></li>
 	          <li class="nav-item"><a href="hotel.html" class="nav-link">Hotels</a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+              @if (User.Identity.IsAuthenticated)
+                    {
+                        <ul class="navbar-nav flex-grow-1 ml-auto me-2">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark">Hoş geldin @User.Identity.Name</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Çıkış Yap</a>
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <li class="nav-item"><a asp-controller="Account" asp-action="Register" class="nav-link">Kayıt Ol</a></li>
+                        <li class="nav-item"><a asp-controller="Account" asp-action="Login" class="nav-link">Giriş Yap</a></li>
+                    }
+                    
 	        </ul>
 	      </div>
 	    </div>
