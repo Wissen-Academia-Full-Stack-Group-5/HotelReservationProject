@@ -2,31 +2,29 @@
 using Entity.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HotelReservation.Controllers
+public class HotelController : Controller
 {
-    public class HotelController : Controller
+    private readonly IHotelService _hotelservice;
+    private readonly IMapper _mapper;
+
+    public HotelController(IHotelService hotelservice, IMapper mapper)
     {
-        private readonly IHotelService _hotelservice;
-        private readonly IMapper _mapper;
+        _hotelservice = hotelservice ?? throw new ArgumentNullException(nameof(hotelservice));
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+    }
 
-        public HotelController(IHotelService hotelservice, IMapper mapper)
+    public async Task<ActionResult> HotelDetail(int id)
+    {
+        var hotel = await _hotelservice.Get(id);
+        if (hotel == null)
         {
-            _hotelservice = hotelservice;
-            _mapper = mapper;
+            return NotFound();
         }
+        return View(hotel);
+    }
 
-        public async Task<ActionResult> HotelDetail(int id)
-        {
-            var hotel = await _hotelservice.Get(id);    
-            if (hotel == null) 
-            { 
-                return NotFound();
-            }
-            return View(hotel);
-        }
-        public IActionResult Index()
-        {
-            return View();
-        }
+    public IActionResult Index()
+    {
+        return View();
     }
 }
