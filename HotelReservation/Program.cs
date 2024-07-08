@@ -1,6 +1,12 @@
 using Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Service.Extensions;
+using Entity.Services;
+using Service.Services;
+using AutoMapper;
+using Service.Mapping;
+using Entity.UnitOfWorks;
+using Data.UnitOfWork;
 
 namespace HotelReservation
 {
@@ -13,14 +19,20 @@ namespace HotelReservation
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<HotelDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnStr")));
+
+            // Eklenen servisler
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<IHotelService, HotelService>();
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
+
             builder.Services.AddExtensions();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -36,14 +48,15 @@ namespace HotelReservation
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.MapControllerRoute(
-            name: "areas",
-             pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                name: "areas",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
             );
 
             app.MapControllerRoute(
-                  name: "area",
-                  pattern: "{controller=Home}/{action=Index}/{area=Admin}"
-                );
+                name: "area",
+                pattern: "{controller=Home}/{action=Index}/{area=Admin}"
+            );
+
             app.Run();
         }
     }

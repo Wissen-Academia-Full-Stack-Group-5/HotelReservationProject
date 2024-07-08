@@ -11,10 +11,11 @@ using System.Threading.Tasks;
 
 namespace Service.Services
 {
-    public class HotelService:IHotelService
+    public class HotelService : IHotelService
     {
         private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
+        private readonly IHotelService _hotelService;
 
         public HotelService(IUnitOfWork uow, IMapper mapper)
         {
@@ -34,9 +35,12 @@ namespace Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<HotelViewModel> Get(int id)
+        public async Task<HotelViewModel> Get(int id)
         {
-            throw new NotImplementedException();
+            var hotel = await _uow.GetRepository<Hotel>().GetByIdAsync(id);
+            return _mapper.Map<HotelViewModel>(hotel);
         }
+
+        
     }
 }
