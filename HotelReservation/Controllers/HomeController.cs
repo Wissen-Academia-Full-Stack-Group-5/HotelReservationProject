@@ -20,10 +20,10 @@ namespace HotelReservation.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> Filter()
+        public async Task<IActionResult> Filter(DateTime CheckInDate, DateTime CheckOutDate)
         {
-			var list = await _hotelService.GetAll();
-			return View(list);
+            var availableHotels = await _hotelService.GetFilteredHotels(CheckInDate, CheckOutDate);
+            return View(availableHotels);
         }
 
         public IActionResult Privacy()

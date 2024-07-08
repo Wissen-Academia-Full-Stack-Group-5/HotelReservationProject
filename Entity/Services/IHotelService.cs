@@ -1,4 +1,5 @@
-﻿using Entity.ViewModels;
+﻿using Entity.Entites;
+using Entity.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Entity.Services
 
         Task<HotelViewModel> Get(int id);
         Task Add(HotelViewModel model);
+        Task<List<Hotel>> GetFilteredHotels(DateTime checkInDate, DateTime checkOutDate);
     }
 }
