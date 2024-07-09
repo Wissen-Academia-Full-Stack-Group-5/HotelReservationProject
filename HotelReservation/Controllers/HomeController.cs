@@ -1,3 +1,4 @@
+using Entity.Entites;
 using Entity.Services;
 using HotelReservation.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -32,9 +33,17 @@ namespace HotelReservation.Controllers
         {
             //var hotel = await _roomService.Get(id);
             //return View(hotel);
-            var rooms = _roomService.Get(id,hotelid);
-            return View(rooms);
-        }
+   //         var rooms = _roomService.Get(id,hotelid);
+			//return View(rooms);
+			var roomViewModel = await _roomService.Get(hotelid, id);
+
+			if (roomViewModel == null)
+			{
+				return NotFound(); // İstenen oda bulunamadıysa 404 dönebilirsiniz.
+			}
+
+			return View(roomViewModel); // RoomViewModel'i view'a döndürüyoruz
+		}
 
         public IActionResult Privacy()
         {

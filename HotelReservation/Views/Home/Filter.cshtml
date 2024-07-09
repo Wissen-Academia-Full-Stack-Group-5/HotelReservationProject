@@ -103,6 +103,8 @@
 				<div class="row">
 					@foreach (var item in Model)
 					{
+						<form asp-controller="Home" asp-action="Detail" asp-area="" method="post">
+							
 						<div class="col-sm col-md-6 col-lg-4 ftco-animate">
 							<div class="destination">
 								<a href="/Home/Detail/@item.HotelId" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(@item.PictureUrl);">
@@ -137,6 +139,7 @@
 								</div>
 							</div>
 						</div>
+						</form>
 					}
 					
 					
