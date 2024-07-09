@@ -57,6 +57,7 @@ namespace Service.Extensions
             services.AddScoped<IHotelService, HotelService>();
 			services.AddScoped(typeof(IAccountService), typeof(AccountService));
             services.AddScoped(typeof(IHotelRepository), typeof(HotelRepository));
+            services.AddScoped(typeof(IRoomService), typeof(RoomService));
 
 
 			services.AddAutoMapper(typeof(MappingProfile));

@@ -17,9 +17,10 @@ namespace Entity.Entites
         public decimal Price { get; set; }
         public string Description { get; set; }
         public bool IsAvailable { get; set; }
+		public string PictureUrl { get; set; } = "";
 
-        // Navigation Properties
-        public Hotel Hotel { get; set; }
+		// Navigation Properties
+		public Hotel Hotel { get; set; }
         public ICollection<Reservation> Reservations { get; set; }
     }
 }

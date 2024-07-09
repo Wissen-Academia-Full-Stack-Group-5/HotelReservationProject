@@ -1,6 +1,7 @@
 using Entity.Services;
 using HotelReservation.Models;
 using Microsoft.AspNetCore.Mvc;
+using Service.Services;
 using System.Diagnostics;
 
 namespace HotelReservation.Controllers
@@ -9,21 +10,30 @@ namespace HotelReservation.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IHotelService _hotelService;
+        private readonly IRoomService _roomService;
 
-		public HomeController(ILogger<HomeController> logger, IHotelService hotelService)
+		public HomeController(ILogger<HomeController> logger, IHotelService hotelService, IRoomService roomService)
 		{
 			_logger = logger;
 			_hotelService = hotelService;
+			_roomService = roomService;
 		}
 
 		public IActionResult Index()
         {
             return View();
         }
-        public async Task<IActionResult> Filter(DateTime CheckInDate, DateTime CheckOutDate)
+        public async Task<IActionResult> Filter()
         {
-            var availableHotels = await _hotelService.GetFilteredHotels(CheckInDate, CheckOutDate);
-            return View(availableHotels);
+			var hotel = await _hotelService.GetAll();
+			return View(hotel);
+		}
+        public async Task<IActionResult> Detail(int id,int hotelid)
+        {
+            //var hotel = await _roomService.Get(id);
+            //return View(hotel);
+            var rooms = _roomService.Get(id,hotelid);
+            return View(rooms);
         }
 
         public IActionResult Privacy()

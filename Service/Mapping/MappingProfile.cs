@@ -20,6 +20,7 @@ namespace Service.Mapping
 			CreateMap<AppUser, UserViewModel>().ReverseMap();
 			CreateMap<AppUser, LoginViewModel>().ReverseMap();
             CreateMap<AppRole, RoleViewModel>().ReverseMap();
+            CreateMap<Room, RoomViewModel>().ReverseMap();
 
         }
     }
