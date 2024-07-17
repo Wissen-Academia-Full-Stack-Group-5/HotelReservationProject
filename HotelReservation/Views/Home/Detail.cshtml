@@ -1,0 +1,49 @@
+﻿@model List<Entity.ViewModels.RoomViewModel>
+
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_LayoutHotel.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>WissenTrips</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 hotel-single ftco-animate mb-5 mt-4">
+                    <div class="destination">
+                        <a href="hotel-single.html" class="img img-2" style="background-image: url(@item.PictureUrl);"></a>
+                        <div class="text p-3">
+                            <div class="d-flex">
+                                <div class="one">
+                                    <h3>Type: @item.Type</h3>
+                                    <p>Oda Numarası: @item.RoomNumber </p>
+                                    <p>Fiyat: @item.Price ₺/gecelik</p>
+                                    <p>Açıklama: @item.Description</p>
+                                    <p>Müsaitlik: @(item.IsAvailable ? "Dolu" : "Boş")</p>
+                                    <p>Şehir: @item.City</p>
+                                    <p>Ülke: @item.Country</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <p class="bottom-area d-flex">
+                                <span><i class="icon-map-o"></i> @item.City, @item.Country</span>
+                                <span class="ml-auto">
+                                    <a asp-controller="Reservation" asp-action="Create" asp-route-roomId="@item.RoomId" class="btn btn-link">Book Now</a>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

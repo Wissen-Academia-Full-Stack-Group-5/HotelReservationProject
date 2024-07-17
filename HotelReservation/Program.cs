@@ -1,3 +1,10 @@
+using Data.Contexts;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using HotelReservation.Models;
+using Service.Extensions;
+using Data.Identity;
+
 namespace HotelReservation
 {
     public class Program
@@ -8,6 +15,12 @@ namespace HotelReservation
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<HotelDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("ConnStr")));
+
+           
+
+            builder.Services.AddExtensions();
 
             var app = builder.Build();
 
@@ -15,7 +28,6 @@ namespace HotelReservation
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -24,11 +36,23 @@ namespace HotelReservation
 
             app.UseRouting();
 
+            // Add Authentication and Authorization middlewares
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.MapControllerRoute(
+                name: "areas",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+            );
+
+            app.MapControllerRoute(
+                name: "area",
+                pattern: "{controller=Home}/{action=Index}/{area=Admin}"
+            );
 
             app.Run();
         }

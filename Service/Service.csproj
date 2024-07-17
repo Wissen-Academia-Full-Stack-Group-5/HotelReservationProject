@@ -7,13 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Extensions\" />
-    <Folder Include="Mapping\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\Data\Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Data\Data.csproj" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.6" />
   </ItemGroup>
 
 </Project>

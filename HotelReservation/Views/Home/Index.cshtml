@@ -1,8 +1,274 @@
-﻿@{
+﻿@model ReservationViewModel
+@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_LayoutHotel.cshtml";
 }
+<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<link rel="stylesheet" href="~/themes/css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="~/themes/css/animate.css">
+
+<link rel="stylesheet" href="~/themes/css/owl.carousel.min.css">
+<link rel="stylesheet" href="~/themes/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="~/themes/css/magnific-popup.css">
+
+<link rel="stylesheet" href="~/themes/css/aos.css">
+
+<link rel="stylesheet" href="~/themes/css/ionicons.min.css">
+
+<link rel="stylesheet" href="~/themes/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="~/themes/css/jquery.timepicker.css">
+
+
+<link rel="stylesheet" href="~/themes/css/flaticon.css">
+<link rel="stylesheet" href="~/themes/css/icomoon.css">
+<link rel="stylesheet" href="~/themes/css/style.css">
+<div class="hero-wrap js-fullheight" style=" background-image:url('/themes/images/bg_1.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
+            <div class="col-md-9 ftco-animate mb-5 pb-5 text-center text-md-left" data-scrollax=" properties: { translateY: '70%' }">
+                <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Yeni <br>Yerleri keşfet</h1>
+                <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Gidilecek, gezilecek, konaklanacak harika yerleri bulun!</p>
+            </div>
+        </div>
+    </div>
 </div>
+
+<section class="ftco-section justify-content-end ftco-search">
+    <div class="container-wrap ml-auto">
+        <div class="row no-gutters">
+
+            <div class="col-md-12 tab-wrap">
+
+                <div class="tab-content p-4 px-5" id="v-pills-tabContent">
+
+
+
+                    <div class="tab-pane fade show active" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-performance-tab">
+                        <form asp-action="Filter" asp-controller="Home" method="get" class="search-destination">
+                            <div class="row">
+                                <div class="col-md align-items-end">
+                                    <div class="form-group">
+                                        <label asp-for="CheckInDate">Giriş</label>
+                                        <div class="form-field">
+                                            <div class="icon"><span class="icon-map-marker"></span></div>
+                                            <input type="text" asp-for="CheckInDate" class="form-control checkin_date" placeholder="Giriş Tarihi">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md align-items-end">
+                                    <div class="form-group">
+                                        <label asp-for="CheckOutDate">Çıkış</label>
+                                        <div class="form-field">
+                                            <div class="icon"><span class="icon-map-marker"></span></div>
+                                            <input type="text" asp-for="CheckOutDate" class="form-control checkout_date" placeholder="Çıkış Tarihi">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md align-items-end">
+                                    <div class="form-group">
+                                        <label asp-for="City">Nereye</label>
+                                        <div class="form-field">
+                                            <div class="icon"><span class="icon-map-marker"></span></div>
+                                            <input asp-for="City" type="text" class="form-control" placeholder="Otel adı, şehir veya bölge">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md align-items-end">
+                                    <div class="form-group">
+                                        <label for="Type">Oda Tipi</label>
+                                        <div class="form-field">
+                                            <div class="select-wrap">
+                                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                                <select asp-for="Type" class="form-control">
+                                                    <option value="Tek Kişilik">Tek Kişilik</option>
+                                                    <option value="Çift Kişilik">Çift Kişilik</option>
+                                                    <option value="Aile Odası">Aile Odası</option>
+                                                    <option value="Süit">Süit</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md align-self-end">
+                                    <div class="form-group">
+                                        <div class="form-field">
+                                            <input type="submit" value="Search" class="form-control btn btn-primary">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="intro ftco-animate">
+                    <h3><span>01</span> Seyahat</h3>
+                    <p> Dünyanın dört bir yanındaki harika lokasyonları keşfedin. WissenTrips ile unutulmaz seyahat deneyimleri yaşayın</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="intro ftco-animate">
+                    <h3><span>02</span> Deneyim</h3>
+                    <p>Yerel kültürleri ve eşsiz deneyimleri keşfedin. WissenTrips ile seyahatinizi zenginleştirin.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="intro ftco-animate">
+                    <h3><span>03</span> Rahatlık</h3>
+                    <p>Rahatlamanın ve huzurun tadını çıkarın. WissenTrips ile en konforlu ve dinlendirici tatil yerlerini keşfedin.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-about d-md-flex">
+    <div class="one-half img" style="background-image: url(themes/images/about.jpg); border-right:5px solid gray;border-radius: 2px; transform: scale(0.95);"></div>
+    <div class="one-half ftco-animate">
+        <div class="heading-section ftco-animate ">
+            <h2 class="mb-4"> - WissenTrips - </h2>
+        </div>
+        <div>
+            <p>WissenTrips ile en iyi otel rezervasyon deneyimini yaşayın. Size en uygun fiyatları ve en rahat konaklama seçeneklerini sunuyoruz. Dünyanın dört bir yanındaki otelleri keşfedin ve rezervasyonunuzu kolayca yapın. Kullanıcı dostu arayüzümüz ve geniş otel yelpazemizle tatilinizi planlamak artık çok daha kolay. WissenTrips, güvenli ve hızlı rezervasyon süreçleriyle size zaman kazandırır. Konforlu ve keyifli bir konaklama için WissenTrips yanınızda. Tatilinizin tadını çıkarın, gerisini bize bırakın.</p>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section services-section bg-light">
+    <div class="container">
+        <div class="row d-flex">
+            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services d-block">
+                    <div class="icon"><span class="flaticon-yatch"></span></div>
+                    <div class="media-body">
+                        <h3 class="heading mb-3">Özel Aktiviteler</h3>
+                        <p>Tatillerinizi daha keyifli hale getirmek için çeşitli özel aktiviteler sunuyoruz. WissenTrips ile her anınızı unutulmaz kılın.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services d-block">
+                    <div class="icon"><span class="flaticon-around"></span></div>
+                    <div class="media-body">
+                        <h3 class="heading mb-3">Seyahat Düzenlemeleri</h3>
+                        <p>Konaklamanız ve gezileriniz için en uygun düzenlemeleri yapıyoruz. WissenTrips ile her şey planlandığı gibi yolunda gider.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services d-block">
+                    <div class="icon"><span class="flaticon-compass"></span></div>
+                    <div class="media-body">
+                        <h3 class="heading mb-3">Özel Rehber</h3>
+                        <p>Keşiflerinizi daha anlamlı hale getirmek için profesyonel rehberler sağlıyoruz. WissenTrips ile her adımda rehberiniz yanınızda.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services d-block">
+                    <div class="icon"><span class="flaticon-map-of-roads"></span></div>
+                    <div class="media-body">
+                        <h3 class="heading mb-3">Yerel Uzman</h3>
+                        <p>Keşiflerinizi daha anlamlı hale getirmek için profesyonel <b>yerel uzmanlar</b> sağlıyoruz. WissenTrips ile her adımda yanınızda olan uzmanlar, seyahatinizi unutulmaz kılmak için hazır.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(/themes/images/bg_1.jpg);" data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18 text-center">
+                            <div class="text">
+                                <strong class="number" data-number="100000">0</strong>
+                                <span>Mutlu Müşteri</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18 text-center">
+                            <div class="text">
+                                <strong class="number" data-number="40000">0</strong>
+                                <span>Gidilecek Yer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18 text-center">
+                            <div class="text">
+                                <strong class="number" data-number="87000">0</strong>
+                                <span>Hotels</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18 text-center">
+                            <div class="text">
+                                <strong class="number" data-number="56400">0</strong>
+                                <span>Restaurant</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section-parallax">
+    <div class="parallax-img d-flex align-items-center">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+                    <h2>Bültenimize katılın</h2>
+                    <p>Yeniliklerden haberdar olmak için bültenimize katılın!</p>
+                    <div class="row d-flex justify-content-center mt-5">
+                        <div class="col-md-8">
+                            <form action="#" class="subscribe-form">
+                                <div class="form-group d-flex">
+                                    <input type="text" class="form-control" placeholder="Mail adresinizi girin">
+                                    <input type="submit" value="Abone Ol" class="submit px-3">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/themes/js/jquery.min.js"></script>
+<script src="~/themes/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="~/themes/js/popper.min.js"></script>
+<script src="~/themes/js/bootstrap.min.js"></script>
+<script src="~/themes/js/jquery.easing.1.3.js"></script>
+<script src="~/themes/js/jquery.waypoints.min.js"></script>
+<script src="~/themes/js/jquery.stellar.min.js"></script>
+<script src="~/themes/js/owl.carousel.min.js"></script>
+<script src="~/themes/js/jquery.magnific-popup.min.js"></script>
+<script src="~/themes/js/aos.js"></script>
+<script src="~/themes/js/jquery.animateNumber.min.js"></script>
+<script src="~/themes/js/bootstrap-datepicker.js"></script>
+<script src="~/themes/js/jquery.timepicker.min.js"></script>
+<script src="~/themes/js/scrollax.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="~/themes/js/google-map.js"></script>
+<script src="~/themes/js/main.js"></script>

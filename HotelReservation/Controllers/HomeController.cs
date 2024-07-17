@@ -1,5 +1,9 @@
+using Entity.Entites;
+using Entity.Services;
+using Entity.ViewModels;
 using HotelReservation.Models;
 using Microsoft.AspNetCore.Mvc;
+using Service.Services;
 using System.Diagnostics;
 
 namespace HotelReservation.Controllers
@@ -7,15 +11,32 @@ namespace HotelReservation.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHotelService _hotelService;
+        private readonly IRoomService _roomService;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+		public HomeController(ILogger<HomeController> logger, IHotelService hotelService, IRoomService roomService)
+		{
+			_logger = logger;
+			_hotelService = hotelService;
+			_roomService = roomService;
+		}
 
-        public IActionResult Index()
+		public IActionResult Index()
         {
             return View();
+        }
+        public async Task<IActionResult> Filter(DateTime checkInDate, DateTime checkOutDate, string City, string Type)
+        {
+			var hotel = await _hotelService.GetFilteredHotels( checkInDate,  checkOutDate, City, Type);
+			return View(hotel);
+		}
+        public  async Task<IActionResult> Detail(int Id)
+        {
+
+        
+
+            var rooms = await _roomService.Get(Id);
+            return View(rooms); // List<RoomViewModel> döndürüyoruz
         }
 
         public IActionResult Privacy()
