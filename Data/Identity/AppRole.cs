@@ -10,6 +10,6 @@ namespace Data.Identity
     public class AppRole :IdentityRole<int>
     {
 
-        public string Descriotion { get; set; }
+        public string Description { get; set; }
     }
 }

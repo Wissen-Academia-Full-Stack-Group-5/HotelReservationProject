@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(HotelDbContext))]
-    [Migration("20240703163620_seed2")]
-    partial class seed2
+    [Migration("20240717095036_NewDatabase")]
+    partial class NewDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -151,6 +151,10 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IdentityUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -169,6 +173,7 @@ namespace Data.Migrations
                             CustomerId = 1,
                             Email = "ahmet.yilmaz@example.com",
                             FirstName = "Ahmet",
+                            IdentityUserId = "1",
                             LastName = "Yılmaz",
                             Phone = "0532-123-4567"
                         },
@@ -177,6 +182,7 @@ namespace Data.Migrations
                             CustomerId = 2,
                             Email = "ayse.kara@example.com",
                             FirstName = "Ayşe",
+                            IdentityUserId = "2",
                             LastName = "Kara",
                             Phone = "0543-987-6543"
                         });
@@ -368,6 +374,10 @@ namespace Data.Migrations
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
+                    b.Property<string>("PictureUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -392,6 +402,7 @@ namespace Data.Migrations
                             Description = "Konforlu tek kişilik oda",
                             HotelId = 1,
                             IsAvailable = true,
+                            PictureUrl = "/images/room-1.jpg",
                             Price = 750.00m,
                             RoomNumber = "101",
                             Type = "Tek Kişilik"
@@ -402,6 +413,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 1,
                             IsAvailable = true,
+                            PictureUrl = "/images/room-2.jpg",
                             Price = 1200.00m,
                             RoomNumber = "102",
                             Type = "Çift Kişilik"
@@ -409,12 +421,68 @@ namespace Data.Migrations
                         new
                         {
                             RoomId = 3,
+                            Description = "Geniş aile odası",
+                            HotelId = 1,
+                            IsAvailable = true,
+                            PictureUrl = "/images/room-3.jpg",
+                            Price = 1200.00m,
+                            RoomNumber = "103",
+                            Type = "Aile Odası"
+                        },
+                        new
+                        {
+                            RoomId = 4,
+                            Description = "Lüks süit oda.",
+                            HotelId = 1,
+                            IsAvailable = true,
+                            PictureUrl = "/images/room-4.jpg",
+                            Price = 850.00m,
+                            RoomNumber = "104",
+                            Type = "Süit"
+                        },
+                        new
+                        {
+                            RoomId = 5,
                             Description = "Deniz manzaralı tek kişilik oda",
                             HotelId = 2,
                             IsAvailable = true,
+                            PictureUrl = "/images/room-5.jpg",
                             Price = 850.00m,
                             RoomNumber = "201",
-                            Type = "Tek Kişilik"
+                            Type = "Tek kişilik"
+                        },
+                        new
+                        {
+                            RoomId = 6,
+                            Description = "Geniş çift kişilik oda",
+                            HotelId = 2,
+                            IsAvailable = true,
+                            PictureUrl = "/images/room-6.jpg",
+                            Price = 850.00m,
+                            RoomNumber = "202",
+                            Type = "Çift Kişik"
+                        },
+                        new
+                        {
+                            RoomId = 7,
+                            Description = "Geniş aile odası",
+                            HotelId = 2,
+                            IsAvailable = true,
+                            PictureUrl = "/images/room-1.jpg",
+                            Price = 850.00m,
+                            RoomNumber = "203",
+                            Type = "Aile Odası"
+                        },
+                        new
+                        {
+                            RoomId = 8,
+                            Description = "Lüks süit oda.",
+                            HotelId = 2,
+                            IsAvailable = true,
+                            PictureUrl = "/images/room-2.jpg",
+                            Price = 850.00m,
+                            RoomNumber = "204",
+                            Type = "Süit"
                         });
                 });
 

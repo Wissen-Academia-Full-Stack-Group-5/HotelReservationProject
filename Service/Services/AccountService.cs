@@ -33,7 +33,7 @@ namespace Service.Services
             AppRole role = new AppRole()
             {
                 Name = model.Name,
-                Descriotion = model.Descriotion
+                Description = model.Description
             };
             var identityResult = await _roleManager.CreateAsync(role);
 

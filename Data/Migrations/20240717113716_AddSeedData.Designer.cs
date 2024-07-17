@@ -4,6 +4,7 @@ using Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(HotelDbContext))]
-    partial class HotelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240717113716_AddSeedData")]
+    partial class AddSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -586,7 +589,7 @@ namespace Data.Migrations
                             Description = "Konforlu tek kişilik oda",
                             HotelId = 1,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-5.jpg",
+                            PictureUrl = "/images/room-1.jpg",
                             Price = 750.00m,
                             RoomNumber = "105",
                             Type = "Tek Kişilik"
@@ -597,7 +600,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 1,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-6.jpg",
+                            PictureUrl = "/images/room-2.jpg",
                             Price = 1200.00m,
                             RoomNumber = "106",
                             Type = "Çift Kişilik"
@@ -608,7 +611,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 1,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-7.jpg",
+                            PictureUrl = "/images/room-3.jpg",
                             Price = 1500.00m,
                             RoomNumber = "107",
                             Type = "Aile Odası"
@@ -619,7 +622,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 1,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-8.jpg",
+                            PictureUrl = "/images/room-4.jpg",
                             Price = 1800.00m,
                             RoomNumber = "108",
                             Type = "Süit"
@@ -630,7 +633,7 @@ namespace Data.Migrations
                             Description = "Konforlu tek kişilik oda",
                             HotelId = 1,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-9.jpg",
+                            PictureUrl = "/images/room-1.jpg",
                             Price = 750.00m,
                             RoomNumber = "109",
                             Type = "Tek Kişilik"
@@ -641,7 +644,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 1,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-10.jpg",
+                            PictureUrl = "/images/room-2.jpg",
                             Price = 1200.00m,
                             RoomNumber = "110",
                             Type = "Çift Kişilik"
@@ -652,7 +655,7 @@ namespace Data.Migrations
                             Description = "Deniz manzaralı tek kişilik oda",
                             HotelId = 2,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-11.jpg",
+                            PictureUrl = "/images/room-5.jpg",
                             Price = 850.00m,
                             RoomNumber = "201",
                             Type = "Tek Kişilik"
@@ -663,7 +666,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 2,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-12.jpg",
+                            PictureUrl = "/images/room-6.jpg",
                             Price = 1200.00m,
                             RoomNumber = "202",
                             Type = "Çift Kişilik"
@@ -674,7 +677,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 2,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-13.jpg",
+                            PictureUrl = "/images/room-7.jpg",
                             Price = 1500.00m,
                             RoomNumber = "203",
                             Type = "Aile Odası"
@@ -685,7 +688,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 2,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-14.jpg",
+                            PictureUrl = "/images/room-8.jpg",
                             Price = 1800.00m,
                             RoomNumber = "204",
                             Type = "Süit"
@@ -696,7 +699,7 @@ namespace Data.Migrations
                             Description = "Deniz manzaralı tek kişilik oda",
                             HotelId = 2,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-15.jpg",
+                            PictureUrl = "/images/room-5.jpg",
                             Price = 850.00m,
                             RoomNumber = "205",
                             Type = "Tek Kişilik"
@@ -707,7 +710,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 2,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-16.jpg",
+                            PictureUrl = "/images/room-6.jpg",
                             Price = 1200.00m,
                             RoomNumber = "206",
                             Type = "Çift Kişilik"
@@ -718,7 +721,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 2,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-17.jpg",
+                            PictureUrl = "/images/room-7.jpg",
                             Price = 1500.00m,
                             RoomNumber = "207",
                             Type = "Aile Odası"
@@ -729,7 +732,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 2,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-18.jpg",
+                            PictureUrl = "/images/room-8.jpg",
                             Price = 1800.00m,
                             RoomNumber = "208",
                             Type = "Süit"
@@ -740,7 +743,7 @@ namespace Data.Migrations
                             Description = "Deniz manzaralı tek kişilik oda",
                             HotelId = 2,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-19.jpg",
+                            PictureUrl = "/images/room-5.jpg",
                             Price = 850.00m,
                             RoomNumber = "209",
                             Type = "Tek Kişilik"
@@ -751,7 +754,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 2,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-20.jpg",
+                            PictureUrl = "/images/room-6.jpg",
                             Price = 1200.00m,
                             RoomNumber = "210",
                             Type = "Çift Kişilik"
@@ -762,7 +765,7 @@ namespace Data.Migrations
                             Description = "Dağ manzaralı tek kişilik oda",
                             HotelId = 3,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-21.jpg",
+                            PictureUrl = "/images/room-9.jpg",
                             Price = 700.00m,
                             RoomNumber = "301",
                             Type = "Tek Kişilik"
@@ -773,7 +776,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 3,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-22.jpg",
+                            PictureUrl = "/images/room-10.jpg",
                             Price = 1100.00m,
                             RoomNumber = "302",
                             Type = "Çift Kişilik"
@@ -784,7 +787,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 3,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-23.jpg",
+                            PictureUrl = "/images/room-11.jpg",
                             Price = 1400.00m,
                             RoomNumber = "303",
                             Type = "Aile Odası"
@@ -795,7 +798,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 3,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-24.jpg",
+                            PictureUrl = "/images/room-12.jpg",
                             Price = 1700.00m,
                             RoomNumber = "304",
                             Type = "Süit"
@@ -806,7 +809,7 @@ namespace Data.Migrations
                             Description = "Dağ manzaralı tek kişilik oda",
                             HotelId = 3,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-25.jpg",
+                            PictureUrl = "/images/room-9.jpg",
                             Price = 700.00m,
                             RoomNumber = "305",
                             Type = "Tek Kişilik"
@@ -817,7 +820,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 3,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-26.jpg",
+                            PictureUrl = "/images/room-10.jpg",
                             Price = 1100.00m,
                             RoomNumber = "306",
                             Type = "Çift Kişilik"
@@ -828,7 +831,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 3,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-27.jpg",
+                            PictureUrl = "/images/room-11.jpg",
                             Price = 1400.00m,
                             RoomNumber = "307",
                             Type = "Aile Odası"
@@ -839,7 +842,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 3,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-28.jpg",
+                            PictureUrl = "/images/room-12.jpg",
                             Price = 1700.00m,
                             RoomNumber = "308",
                             Type = "Süit"
@@ -850,7 +853,7 @@ namespace Data.Migrations
                             Description = "Dağ manzaralı tek kişilik oda",
                             HotelId = 3,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-29.jpg",
+                            PictureUrl = "/images/room-9.jpg",
                             Price = 700.00m,
                             RoomNumber = "309",
                             Type = "Tek Kişilik"
@@ -861,7 +864,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 3,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-30.jpg",
+                            PictureUrl = "/images/room-10.jpg",
                             Price = 1100.00m,
                             RoomNumber = "310",
                             Type = "Çift Kişilik"
@@ -872,7 +875,7 @@ namespace Data.Migrations
                             Description = "Şehir manzaralı tek kişilik oda",
                             HotelId = 4,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-31.jpg",
+                            PictureUrl = "/images/room-1.jpg",
                             Price = 750.00m,
                             RoomNumber = "401",
                             Type = "Tek Kişilik"
@@ -883,7 +886,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 4,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-32.jpg",
+                            PictureUrl = "/images/room-2.jpg",
                             Price = 1200.00m,
                             RoomNumber = "402",
                             Type = "Çift Kişilik"
@@ -894,7 +897,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 4,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-33.jpg",
+                            PictureUrl = "/images/room-3.jpg",
                             Price = 1500.00m,
                             RoomNumber = "403",
                             Type = "Aile Odası"
@@ -905,7 +908,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 4,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-34.jpg",
+                            PictureUrl = "/images/room-4.jpg",
                             Price = 1800.00m,
                             RoomNumber = "404",
                             Type = "Süit"
@@ -916,7 +919,7 @@ namespace Data.Migrations
                             Description = "Şehir manzaralı tek kişilik oda",
                             HotelId = 4,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-35.jpg",
+                            PictureUrl = "/images/room-1.jpg",
                             Price = 750.00m,
                             RoomNumber = "405",
                             Type = "Tek Kişilik"
@@ -927,7 +930,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 4,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-36.jpg",
+                            PictureUrl = "/images/room-2.jpg",
                             Price = 1200.00m,
                             RoomNumber = "406",
                             Type = "Çift Kişilik"
@@ -938,7 +941,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 4,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-37.jpg",
+                            PictureUrl = "/images/room-3.jpg",
                             Price = 1500.00m,
                             RoomNumber = "407",
                             Type = "Aile Odası"
@@ -949,7 +952,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 4,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-38.jpg",
+                            PictureUrl = "/images/room-4.jpg",
                             Price = 1800.00m,
                             RoomNumber = "408",
                             Type = "Süit"
@@ -960,7 +963,7 @@ namespace Data.Migrations
                             Description = "Şehir manzaralı tek kişilik oda",
                             HotelId = 4,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-39.jpg",
+                            PictureUrl = "/images/room-1.jpg",
                             Price = 750.00m,
                             RoomNumber = "409",
                             Type = "Tek Kişilik"
@@ -971,7 +974,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 4,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-40.jpg",
+                            PictureUrl = "/images/room-2.jpg",
                             Price = 1200.00m,
                             RoomNumber = "410",
                             Type = "Çift Kişilik"
@@ -982,7 +985,7 @@ namespace Data.Migrations
                             Description = "Plaj manzaralı tek kişilik oda",
                             HotelId = 5,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-41.jpg",
+                            PictureUrl = "/images/room-5.jpg",
                             Price = 850.00m,
                             RoomNumber = "501",
                             Type = "Tek Kişilik"
@@ -993,7 +996,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 5,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-42.jpg",
+                            PictureUrl = "/images/room-6.jpg",
                             Price = 1200.00m,
                             RoomNumber = "502",
                             Type = "Çift Kişilik"
@@ -1004,7 +1007,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 5,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-43.jpg",
+                            PictureUrl = "/images/room-7.jpg",
                             Price = 1500.00m,
                             RoomNumber = "503",
                             Type = "Aile Odası"
@@ -1015,7 +1018,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 5,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-44.jpg",
+                            PictureUrl = "/images/room-8.jpg",
                             Price = 1800.00m,
                             RoomNumber = "504",
                             Type = "Süit"
@@ -1026,7 +1029,7 @@ namespace Data.Migrations
                             Description = "Plaj manzaralı tek kişilik oda",
                             HotelId = 5,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-45.jpg",
+                            PictureUrl = "/images/room-5.jpg",
                             Price = 850.00m,
                             RoomNumber = "505",
                             Type = "Tek Kişilik"
@@ -1037,7 +1040,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 5,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-46.jpg",
+                            PictureUrl = "/images/room-6.jpg",
                             Price = 1200.00m,
                             RoomNumber = "506",
                             Type = "Çift Kişilik"
@@ -1048,7 +1051,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 5,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-47.jpg",
+                            PictureUrl = "/images/room-7.jpg",
                             Price = 1500.00m,
                             RoomNumber = "507",
                             Type = "Aile Odası"
@@ -1059,7 +1062,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 5,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-48.jpg",
+                            PictureUrl = "/images/room-8.jpg",
                             Price = 1800.00m,
                             RoomNumber = "508",
                             Type = "Süit"
@@ -1070,7 +1073,7 @@ namespace Data.Migrations
                             Description = "Plaj manzaralı tek kişilik oda",
                             HotelId = 5,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-49.jpg",
+                            PictureUrl = "/images/room-5.jpg",
                             Price = 850.00m,
                             RoomNumber = "509",
                             Type = "Tek Kişilik"
@@ -1081,7 +1084,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 5,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-50.jpg",
+                            PictureUrl = "/images/room-6.jpg",
                             Price = 1200.00m,
                             RoomNumber = "510",
                             Type = "Çift Kişilik"
@@ -1092,7 +1095,7 @@ namespace Data.Migrations
                             Description = "Boğaz manzaralı tek kişilik oda",
                             HotelId = 6,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-51.jpg",
+                            PictureUrl = "/images/room-1.jpg",
                             Price = 950.00m,
                             RoomNumber = "601",
                             Type = "Tek Kişilik"
@@ -1103,7 +1106,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 6,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-52.jpg",
+                            PictureUrl = "/images/room-2.jpg",
                             Price = 1300.00m,
                             RoomNumber = "602",
                             Type = "Çift Kişilik"
@@ -1114,7 +1117,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 6,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-53.jpg",
+                            PictureUrl = "/images/room-3.jpg",
                             Price = 1600.00m,
                             RoomNumber = "603",
                             Type = "Aile Odası"
@@ -1125,7 +1128,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 6,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-54.jpg",
+                            PictureUrl = "/images/room-4.jpg",
                             Price = 1900.00m,
                             RoomNumber = "604",
                             Type = "Süit"
@@ -1136,7 +1139,7 @@ namespace Data.Migrations
                             Description = "Boğaz manzaralı tek kişilik oda",
                             HotelId = 6,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-55.jpg",
+                            PictureUrl = "/images/room-1.jpg",
                             Price = 950.00m,
                             RoomNumber = "605",
                             Type = "Tek Kişilik"
@@ -1147,7 +1150,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 6,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-56.jpg",
+                            PictureUrl = "/images/room-2.jpg",
                             Price = 1300.00m,
                             RoomNumber = "606",
                             Type = "Çift Kişilik"
@@ -1158,7 +1161,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 6,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-57.jpg",
+                            PictureUrl = "/images/room-3.jpg",
                             Price = 1600.00m,
                             RoomNumber = "607",
                             Type = "Aile Odası"
@@ -1169,7 +1172,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 6,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-58.jpg",
+                            PictureUrl = "/images/room-4.jpg",
                             Price = 1900.00m,
                             RoomNumber = "608",
                             Type = "Süit"
@@ -1180,7 +1183,7 @@ namespace Data.Migrations
                             Description = "Boğaz manzaralı tek kişilik oda",
                             HotelId = 6,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-59.jpg",
+                            PictureUrl = "/images/room-1.jpg",
                             Price = 950.00m,
                             RoomNumber = "609",
                             Type = "Tek Kişilik"
@@ -1191,7 +1194,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 6,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-60.jpg",
+                            PictureUrl = "/images/room-2.jpg",
                             Price = 1300.00m,
                             RoomNumber = "610",
                             Type = "Çift Kişilik"
@@ -1202,7 +1205,7 @@ namespace Data.Migrations
                             Description = "Yeşil vadi manzaralı tek kişilik oda",
                             HotelId = 7,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-61.jpg",
+                            PictureUrl = "/images/room-9.jpg",
                             Price = 800.00m,
                             RoomNumber = "701",
                             Type = "Tek Kişilik"
@@ -1213,7 +1216,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 7,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-62.jpg",
+                            PictureUrl = "/images/room-10.jpg",
                             Price = 1100.00m,
                             RoomNumber = "702",
                             Type = "Çift Kişilik"
@@ -1224,7 +1227,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 7,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-63.jpg",
+                            PictureUrl = "/images/room-11.jpg",
                             Price = 1400.00m,
                             RoomNumber = "703",
                             Type = "Aile Odası"
@@ -1235,7 +1238,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 7,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-64.jpg",
+                            PictureUrl = "/images/room-12.jpg",
                             Price = 1700.00m,
                             RoomNumber = "704",
                             Type = "Süit"
@@ -1246,7 +1249,7 @@ namespace Data.Migrations
                             Description = "Yeşil vadi manzaralı tek kişilik oda",
                             HotelId = 7,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-65.jpg",
+                            PictureUrl = "/images/room-9.jpg",
                             Price = 800.00m,
                             RoomNumber = "705",
                             Type = "Tek Kişilik"
@@ -1257,7 +1260,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 7,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-66.jpg",
+                            PictureUrl = "/images/room-10.jpg",
                             Price = 1100.00m,
                             RoomNumber = "706",
                             Type = "Çift Kişilik"
@@ -1268,7 +1271,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 7,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-67.jpg",
+                            PictureUrl = "/images/room-11.jpg",
                             Price = 1400.00m,
                             RoomNumber = "707",
                             Type = "Aile Odası"
@@ -1279,7 +1282,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 7,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-68.jpg",
+                            PictureUrl = "/images/room-12.jpg",
                             Price = 1700.00m,
                             RoomNumber = "708",
                             Type = "Süit"
@@ -1290,7 +1293,7 @@ namespace Data.Migrations
                             Description = "Yeşil vadi manzaralı tek kişilik oda",
                             HotelId = 7,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-69.jpg",
+                            PictureUrl = "/images/room-9.jpg",
                             Price = 800.00m,
                             RoomNumber = "709",
                             Type = "Tek Kişilik"
@@ -1301,7 +1304,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 7,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-70.jpg",
+                            PictureUrl = "/images/room-10.jpg",
                             Price = 1100.00m,
                             RoomNumber = "710",
                             Type = "Çift Kişilik"
@@ -1312,7 +1315,7 @@ namespace Data.Migrations
                             Description = "Deniz manzaralı tek kişilik oda",
                             HotelId = 8,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-71.jpg",
+                            PictureUrl = "/images/room-5.jpg",
                             Price = 900.00m,
                             RoomNumber = "801",
                             Type = "Tek Kişilik"
@@ -1323,7 +1326,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 8,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-72.jpg",
+                            PictureUrl = "/images/room-6.jpg",
                             Price = 1300.00m,
                             RoomNumber = "802",
                             Type = "Çift Kişilik"
@@ -1334,7 +1337,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 8,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-73.jpg",
+                            PictureUrl = "/images/room-7.jpg",
                             Price = 1600.00m,
                             RoomNumber = "803",
                             Type = "Aile Odası"
@@ -1345,7 +1348,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 8,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-74.jpg",
+                            PictureUrl = "/images/room-8.jpg",
                             Price = 1900.00m,
                             RoomNumber = "804",
                             Type = "Süit"
@@ -1356,7 +1359,7 @@ namespace Data.Migrations
                             Description = "Deniz manzaralı tek kişilik oda",
                             HotelId = 8,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-75.jpg",
+                            PictureUrl = "/images/room-5.jpg",
                             Price = 900.00m,
                             RoomNumber = "805",
                             Type = "Tek Kişilik"
@@ -1367,7 +1370,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 8,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-76.jpg",
+                            PictureUrl = "/images/room-6.jpg",
                             Price = 1300.00m,
                             RoomNumber = "806",
                             Type = "Çift Kişilik"
@@ -1378,7 +1381,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 8,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-77.jpg",
+                            PictureUrl = "/images/room-7.jpg",
                             Price = 1600.00m,
                             RoomNumber = "807",
                             Type = "Aile Odası"
@@ -1389,7 +1392,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 8,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-78.jpg",
+                            PictureUrl = "/images/room-8.jpg",
                             Price = 1900.00m,
                             RoomNumber = "808",
                             Type = "Süit"
@@ -1400,7 +1403,7 @@ namespace Data.Migrations
                             Description = "Deniz manzaralı tek kişilik oda",
                             HotelId = 8,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-79.jpg",
+                            PictureUrl = "/images/room-5.jpg",
                             Price = 900.00m,
                             RoomNumber = "809",
                             Type = "Tek Kişilik"
@@ -1411,7 +1414,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 8,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-80.jpg",
+                            PictureUrl = "/images/room-6.jpg",
                             Price = 1300.00m,
                             RoomNumber = "810",
                             Type = "Çift Kişilik"
@@ -1422,7 +1425,7 @@ namespace Data.Migrations
                             Description = "Kaplıca manzaralı tek kişilik oda",
                             HotelId = 9,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-81.jpg",
+                            PictureUrl = "/images/room-9.jpg",
                             Price = 950.00m,
                             RoomNumber = "901",
                             Type = "Tek Kişilik"
@@ -1433,7 +1436,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 9,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-82.jpg",
+                            PictureUrl = "/images/room-10.jpg",
                             Price = 1400.00m,
                             RoomNumber = "902",
                             Type = "Çift Kişilik"
@@ -1444,7 +1447,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 9,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-83.jpg",
+                            PictureUrl = "/images/room-11.jpg",
                             Price = 1700.00m,
                             RoomNumber = "903",
                             Type = "Aile Odası"
@@ -1455,7 +1458,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 9,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-84.jpg",
+                            PictureUrl = "/images/room-12.jpg",
                             Price = 2000.00m,
                             RoomNumber = "904",
                             Type = "Süit"
@@ -1466,7 +1469,7 @@ namespace Data.Migrations
                             Description = "Kaplıca manzaralı tek kişilik oda",
                             HotelId = 9,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-85.jpg",
+                            PictureUrl = "/images/room-9.jpg",
                             Price = 950.00m,
                             RoomNumber = "905",
                             Type = "Tek Kişilik"
@@ -1477,7 +1480,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 9,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-86.jpg",
+                            PictureUrl = "/images/room-10.jpg",
                             Price = 1400.00m,
                             RoomNumber = "906",
                             Type = "Çift Kişilik"
@@ -1488,7 +1491,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 9,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-87.jpg",
+                            PictureUrl = "/images/room-11.jpg",
                             Price = 1700.00m,
                             RoomNumber = "907",
                             Type = "Aile Odası"
@@ -1499,7 +1502,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 9,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-88.jpg",
+                            PictureUrl = "/images/room-12.jpg",
                             Price = 2000.00m,
                             RoomNumber = "908",
                             Type = "Süit"
@@ -1510,7 +1513,7 @@ namespace Data.Migrations
                             Description = "Kaplıca manzaralı tek kişilik oda",
                             HotelId = 9,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-89.jpg",
+                            PictureUrl = "/images/room-9.jpg",
                             Price = 950.00m,
                             RoomNumber = "909",
                             Type = "Tek Kişilik"
@@ -1521,7 +1524,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 9,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-90.jpg",
+                            PictureUrl = "/images/room-10.jpg",
                             Price = 1400.00m,
                             RoomNumber = "910",
                             Type = "Çift Kişilik"
@@ -1532,7 +1535,7 @@ namespace Data.Migrations
                             Description = "Ege manzaralı tek kişilik oda",
                             HotelId = 10,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-91.jpg",
+                            PictureUrl = "/images/room-1.jpg",
                             Price = 850.00m,
                             RoomNumber = "1001",
                             Type = "Tek Kişilik"
@@ -1543,7 +1546,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 10,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-92.jpg",
+                            PictureUrl = "/images/room-2.jpg",
                             Price = 1200.00m,
                             RoomNumber = "1002",
                             Type = "Çift Kişilik"
@@ -1554,7 +1557,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 10,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-93.jpg",
+                            PictureUrl = "/images/room-3.jpg",
                             Price = 1500.00m,
                             RoomNumber = "1003",
                             Type = "Aile Odası"
@@ -1565,7 +1568,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 10,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-94.jpg",
+                            PictureUrl = "/images/room-4.jpg",
                             Price = 1800.00m,
                             RoomNumber = "1004",
                             Type = "Süit"
@@ -1576,7 +1579,7 @@ namespace Data.Migrations
                             Description = "Ege manzaralı tek kişilik oda",
                             HotelId = 10,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-95.jpg",
+                            PictureUrl = "/images/room-1.jpg",
                             Price = 850.00m,
                             RoomNumber = "1005",
                             Type = "Tek Kişilik"
@@ -1587,7 +1590,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 10,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-96.jpg",
+                            PictureUrl = "/images/room-2.jpg",
                             Price = 1200.00m,
                             RoomNumber = "1006",
                             Type = "Çift Kişilik"
@@ -1598,7 +1601,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 10,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-97.jpg",
+                            PictureUrl = "/images/room-3.jpg",
                             Price = 1500.00m,
                             RoomNumber = "1007",
                             Type = "Aile Odası"
@@ -1609,7 +1612,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 10,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-98.jpg",
+                            PictureUrl = "/images/room-4.jpg",
                             Price = 1800.00m,
                             RoomNumber = "1008",
                             Type = "Süit"
@@ -1620,7 +1623,7 @@ namespace Data.Migrations
                             Description = "Ege manzaralı tek kişilik oda",
                             HotelId = 10,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-99.jpg",
+                            PictureUrl = "/images/room-1.jpg",
                             Price = 850.00m,
                             RoomNumber = "1009",
                             Type = "Tek Kişilik"
@@ -1631,7 +1634,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 10,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-100.jpg",
+                            PictureUrl = "/images/room-2.jpg",
                             Price = 1200.00m,
                             RoomNumber = "1010",
                             Type = "Çift Kişilik"
@@ -1642,7 +1645,7 @@ namespace Data.Migrations
                             Description = "Tarihi dokusuyla tek kişilik oda",
                             HotelId = 11,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-101.jpg",
+                            PictureUrl = "/images/room-9.jpg",
                             Price = 750.00m,
                             RoomNumber = "1101",
                             Type = "Tek Kişilik"
@@ -1653,7 +1656,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 11,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-102.jpg",
+                            PictureUrl = "/images/room-10.jpg",
                             Price = 1200.00m,
                             RoomNumber = "1102",
                             Type = "Çift Kişilik"
@@ -1664,7 +1667,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 11,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-103.jpg",
+                            PictureUrl = "/images/room-11.jpg",
                             Price = 1500.00m,
                             RoomNumber = "1103",
                             Type = "Aile Odası"
@@ -1675,7 +1678,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 11,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-104.jpg",
+                            PictureUrl = "/images/room-12.jpg",
                             Price = 1800.00m,
                             RoomNumber = "1104",
                             Type = "Süit"
@@ -1686,7 +1689,7 @@ namespace Data.Migrations
                             Description = "Tarihi dokusuyla tek kişilik oda",
                             HotelId = 11,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-105.jpg",
+                            PictureUrl = "/images/room-9.jpg",
                             Price = 750.00m,
                             RoomNumber = "1105",
                             Type = "Tek Kişilik"
@@ -1697,7 +1700,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 11,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-106.jpg",
+                            PictureUrl = "/images/room-10.jpg",
                             Price = 1200.00m,
                             RoomNumber = "1106",
                             Type = "Çift Kişilik"
@@ -1708,7 +1711,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 11,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-107.jpg",
+                            PictureUrl = "/images/room-11.jpg",
                             Price = 1500.00m,
                             RoomNumber = "1107",
                             Type = "Aile Odası"
@@ -1719,7 +1722,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 11,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-108.jpg",
+                            PictureUrl = "/images/room-12.jpg",
                             Price = 1800.00m,
                             RoomNumber = "1108",
                             Type = "Süit"
@@ -1730,7 +1733,7 @@ namespace Data.Migrations
                             Description = "Tarihi dokusuyla tek kişilik oda",
                             HotelId = 11,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-109.jpg",
+                            PictureUrl = "/images/room-9.jpg",
                             Price = 750.00m,
                             RoomNumber = "1109",
                             Type = "Tek Kişilik"
@@ -1741,7 +1744,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 11,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-110.jpg",
+                            PictureUrl = "/images/room-10.jpg",
                             Price = 1200.00m,
                             RoomNumber = "1110",
                             Type = "Çift Kişilik"
@@ -1752,7 +1755,7 @@ namespace Data.Migrations
                             Description = "Butik tarzda tek kişilik oda",
                             HotelId = 12,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-111.jpg",
+                            PictureUrl = "/images/room-1.jpg",
                             Price = 850.00m,
                             RoomNumber = "1201",
                             Type = "Tek Kişilik"
@@ -1763,7 +1766,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 12,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-112.jpg",
+                            PictureUrl = "/images/room-2.jpg",
                             Price = 1200.00m,
                             RoomNumber = "1202",
                             Type = "Çift Kişilik"
@@ -1774,7 +1777,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 12,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-113.jpg",
+                            PictureUrl = "/images/room-3.jpg",
                             Price = 1500.00m,
                             RoomNumber = "1203",
                             Type = "Aile Odası"
@@ -1785,7 +1788,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 12,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-114.jpg",
+                            PictureUrl = "/images/room-4.jpg",
                             Price = 1800.00m,
                             RoomNumber = "1204",
                             Type = "Süit"
@@ -1796,7 +1799,7 @@ namespace Data.Migrations
                             Description = "Butik tarzda tek kişilik oda",
                             HotelId = 12,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-115.jpg",
+                            PictureUrl = "/images/room-1.jpg",
                             Price = 850.00m,
                             RoomNumber = "1205",
                             Type = "Tek Kişilik"
@@ -1807,7 +1810,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 12,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-116.jpg",
+                            PictureUrl = "/images/room-2.jpg",
                             Price = 1200.00m,
                             RoomNumber = "1206",
                             Type = "Çift Kişilik"
@@ -1818,7 +1821,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 12,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-117.jpg",
+                            PictureUrl = "/images/room-3.jpg",
                             Price = 1500.00m,
                             RoomNumber = "1207",
                             Type = "Aile Odası"
@@ -1829,7 +1832,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 12,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-118.jpg",
+                            PictureUrl = "/images/room-4.jpg",
                             Price = 1800.00m,
                             RoomNumber = "1208",
                             Type = "Süit"
@@ -1840,7 +1843,7 @@ namespace Data.Migrations
                             Description = "Butik tarzda tek kişilik oda",
                             HotelId = 12,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-119.jpg",
+                            PictureUrl = "/images/room-1.jpg",
                             Price = 850.00m,
                             RoomNumber = "1209",
                             Type = "Tek Kişilik"
@@ -1851,7 +1854,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 12,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-120.jpg",
+                            PictureUrl = "/images/room-2.jpg",
                             Price = 1200.00m,
                             RoomNumber = "1210",
                             Type = "Çift Kişilik"
@@ -1862,7 +1865,7 @@ namespace Data.Migrations
                             Description = "Kayak merkezine yakın tek kişilik oda",
                             HotelId = 13,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-121.jpg",
+                            PictureUrl = "/images/room-5.jpg",
                             Price = 900.00m,
                             RoomNumber = "1301",
                             Type = "Tek Kişilik"
@@ -1873,7 +1876,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 13,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-122.jpg",
+                            PictureUrl = "/images/room-6.jpg",
                             Price = 1400.00m,
                             RoomNumber = "1302",
                             Type = "Çift Kişilik"
@@ -1884,7 +1887,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 13,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-123.jpg",
+                            PictureUrl = "/images/room-7.jpg",
                             Price = 1700.00m,
                             RoomNumber = "1303",
                             Type = "Aile Odası"
@@ -1895,7 +1898,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 13,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-124.jpg",
+                            PictureUrl = "/images/room-8.jpg",
                             Price = 2000.00m,
                             RoomNumber = "1304",
                             Type = "Süit"
@@ -1906,7 +1909,7 @@ namespace Data.Migrations
                             Description = "Kayak merkezine yakın tek kişilik oda",
                             HotelId = 13,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-125.jpg",
+                            PictureUrl = "/images/room-5.jpg",
                             Price = 900.00m,
                             RoomNumber = "1305",
                             Type = "Tek Kişilik"
@@ -1917,7 +1920,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 13,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-126.jpg",
+                            PictureUrl = "/images/room-6.jpg",
                             Price = 1400.00m,
                             RoomNumber = "1306",
                             Type = "Çift Kişilik"
@@ -1928,7 +1931,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 13,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-127.jpg",
+                            PictureUrl = "/images/room-7.jpg",
                             Price = 1700.00m,
                             RoomNumber = "1307",
                             Type = "Aile Odası"
@@ -1939,7 +1942,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 13,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-128.jpg",
+                            PictureUrl = "/images/room-8.jpg",
                             Price = 2000.00m,
                             RoomNumber = "1308",
                             Type = "Süit"
@@ -1950,7 +1953,7 @@ namespace Data.Migrations
                             Description = "Kayak merkezine yakın tek kişilik oda",
                             HotelId = 13,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-129.jpg",
+                            PictureUrl = "/images/room-5.jpg",
                             Price = 900.00m,
                             RoomNumber = "1309",
                             Type = "Tek Kişilik"
@@ -1961,7 +1964,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 13,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-130.jpg",
+                            PictureUrl = "/images/room-6.jpg",
                             Price = 1400.00m,
                             RoomNumber = "1310",
                             Type = "Çift Kişilik"
@@ -1972,7 +1975,7 @@ namespace Data.Migrations
                             Description = "Spa merkezine yakın tek kişilik oda",
                             HotelId = 14,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-131.jpg",
+                            PictureUrl = "/images/room-9.jpg",
                             Price = 1000.00m,
                             RoomNumber = "1401",
                             Type = "Tek Kişilik"
@@ -1983,7 +1986,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 14,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-132.jpg",
+                            PictureUrl = "/images/room-10.jpg",
                             Price = 1500.00m,
                             RoomNumber = "1402",
                             Type = "Çift Kişilik"
@@ -1994,7 +1997,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 14,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-133.jpg",
+                            PictureUrl = "/images/room-11.jpg",
                             Price = 1800.00m,
                             RoomNumber = "1403",
                             Type = "Aile Odası"
@@ -2005,7 +2008,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 14,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-134.jpg",
+                            PictureUrl = "/images/room-12.jpg",
                             Price = 2100.00m,
                             RoomNumber = "1404",
                             Type = "Süit"
@@ -2016,7 +2019,7 @@ namespace Data.Migrations
                             Description = "Spa merkezine yakın tek kişilik oda",
                             HotelId = 14,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-135.jpg",
+                            PictureUrl = "/images/room-9.jpg",
                             Price = 1000.00m,
                             RoomNumber = "1405",
                             Type = "Tek Kişilik"
@@ -2027,7 +2030,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 14,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-136.jpg",
+                            PictureUrl = "/images/room-10.jpg",
                             Price = 1500.00m,
                             RoomNumber = "1406",
                             Type = "Çift Kişilik"
@@ -2038,7 +2041,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 14,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-137.jpg",
+                            PictureUrl = "/images/room-11.jpg",
                             Price = 1800.00m,
                             RoomNumber = "1407",
                             Type = "Aile Odası"
@@ -2049,7 +2052,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 14,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-138.jpg",
+                            PictureUrl = "/images/room-12.jpg",
                             Price = 2100.00m,
                             RoomNumber = "1408",
                             Type = "Süit"
@@ -2060,7 +2063,7 @@ namespace Data.Migrations
                             Description = "Spa merkezine yakın tek kişilik oda",
                             HotelId = 14,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-139.jpg",
+                            PictureUrl = "/images/room-9.jpg",
                             Price = 1000.00m,
                             RoomNumber = "1409",
                             Type = "Tek Kişilik"
@@ -2071,7 +2074,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 14,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-140.jpg",
+                            PictureUrl = "/images/room-10.jpg",
                             Price = 1500.00m,
                             RoomNumber = "1410",
                             Type = "Çift Kişilik"
@@ -2082,7 +2085,7 @@ namespace Data.Migrations
                             Description = "Lüks tatil köyünde tek kişilik oda",
                             HotelId = 15,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-141.jpg",
+                            PictureUrl = "/images/room-1.jpg",
                             Price = 1200.00m,
                             RoomNumber = "1501",
                             Type = "Tek Kişilik"
@@ -2093,7 +2096,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 15,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-142.jpg",
+                            PictureUrl = "/images/room-2.jpg",
                             Price = 1600.00m,
                             RoomNumber = "1502",
                             Type = "Çift Kişilik"
@@ -2104,7 +2107,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 15,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-143.jpg",
+                            PictureUrl = "/images/room-3.jpg",
                             Price = 2000.00m,
                             RoomNumber = "1503",
                             Type = "Aile Odası"
@@ -2115,7 +2118,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 15,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-144.jpg",
+                            PictureUrl = "/images/room-4.jpg",
                             Price = 2500.00m,
                             RoomNumber = "1504",
                             Type = "Süit"
@@ -2126,7 +2129,7 @@ namespace Data.Migrations
                             Description = "Lüks tatil köyünde tek kişilik oda",
                             HotelId = 15,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-145.jpg",
+                            PictureUrl = "/images/room-1.jpg",
                             Price = 1200.00m,
                             RoomNumber = "1505",
                             Type = "Tek Kişilik"
@@ -2137,7 +2140,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 15,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-146.jpg",
+                            PictureUrl = "/images/room-2.jpg",
                             Price = 1600.00m,
                             RoomNumber = "1506",
                             Type = "Çift Kişilik"
@@ -2148,7 +2151,7 @@ namespace Data.Migrations
                             Description = "Geniş aile odası",
                             HotelId = 15,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-147.jpg",
+                            PictureUrl = "/images/room-3.jpg",
                             Price = 2000.00m,
                             RoomNumber = "1507",
                             Type = "Aile Odası"
@@ -2159,7 +2162,7 @@ namespace Data.Migrations
                             Description = "Lüks süit oda",
                             HotelId = 15,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-148.jpg",
+                            PictureUrl = "/images/room-4.jpg",
                             Price = 2500.00m,
                             RoomNumber = "1508",
                             Type = "Süit"
@@ -2170,7 +2173,7 @@ namespace Data.Migrations
                             Description = "Lüks tatil köyünde tek kişilik oda",
                             HotelId = 15,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-149.jpg",
+                            PictureUrl = "/images/room-1.jpg",
                             Price = 1200.00m,
                             RoomNumber = "1509",
                             Type = "Tek Kişilik"
@@ -2181,7 +2184,7 @@ namespace Data.Migrations
                             Description = "Geniş çift kişilik oda",
                             HotelId = 15,
                             IsAvailable = true,
-                            PictureUrl = "/images/room-150.jpg",
+                            PictureUrl = "/images/room-2.jpg",
                             Price = 1600.00m,
                             RoomNumber = "1510",
                             Type = "Çift Kişilik"
