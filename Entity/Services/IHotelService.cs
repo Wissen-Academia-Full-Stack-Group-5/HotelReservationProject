@@ -15,5 +15,7 @@ namespace Entity.Services
         Task<HotelViewModel> Get(int id);
         Task Add(HotelViewModel model);
         Task<List<HotelViewModel>> GetFilteredHotels(DateTime checkInDate, DateTime checkOutDate, string City, string Type);
+        Task<List<string>> GetCities();
     }
+
 }

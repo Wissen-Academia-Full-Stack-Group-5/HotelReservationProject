@@ -5,6 +5,7 @@ using HotelReservation.Models;
 using Microsoft.AspNetCore.Mvc;
 using Service.Services;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace HotelReservation.Controllers
 {
@@ -14,27 +15,46 @@ namespace HotelReservation.Controllers
         private readonly IHotelService _hotelService;
         private readonly IRoomService _roomService;
 
-		public HomeController(ILogger<HomeController> logger, IHotelService hotelService, IRoomService roomService)
-		{
-			_logger = logger;
-			_hotelService = hotelService;
-			_roomService = roomService;
-		}
-
-		public IActionResult Index()
+        public HomeController(ILogger<HomeController> logger, IHotelService hotelService, IRoomService roomService)
         {
-            return View();
+            _logger = logger;
+            _hotelService = hotelService;
+            _roomService = roomService;
         }
+
+        public async Task<IActionResult> Index()
+        {
+            var cities = await _hotelService.GetCities();
+            var model = new SearchViewModel
+            {
+                Cities = cities
+            };
+            return View(model);
+        }
+
         public async Task<IActionResult> Filter(DateTime checkInDate, DateTime checkOutDate, string City, string Type)
         {
-			var hotel = await _hotelService.GetFilteredHotels( checkInDate,  checkOutDate, City, Type);
-			return View(hotel);
-		}
-        public  async Task<IActionResult> Detail(int Id)
+            if (checkInDate == default || checkOutDate == default || string.IsNullOrEmpty(City) || string.IsNullOrEmpty(Type))
+            {
+                ModelState.AddModelError("", "Lütfen tüm alanları doldurun.");
+                var cities = await _hotelService.GetCities();
+                var model = new SearchViewModel
+                {
+                    Cities = cities,
+                    CheckInDate = checkInDate,
+                    CheckOutDate = checkOutDate,
+                    City = City,
+                    Type = Type
+                };
+                return View("Index", model);
+            }
+
+            var hotel = await _hotelService.GetFilteredHotels(checkInDate, checkOutDate, City, Type);
+            return View(hotel);
+        }
+
+        public async Task<IActionResult> Detail(int Id)
         {
-
-        
-
             var rooms = await _roomService.Get(Id);
             return View(rooms); // List<RoomViewModel> döndürüyoruz
         }

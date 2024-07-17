@@ -11,34 +11,30 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Service.Services
 {
-    public class HotelService: IHotelService
+    public class HotelService : IHotelService
     {
-        
-        private readonly HotelViewModel _hotel;
-        private readonly IHotelRepository hotelRepository;
+        private readonly IHotelRepository _hotelRepository;
         private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
+        private readonly HotelDbContext _context;
 
         public HotelService(IUnitOfWork uow, IMapper mapper, HotelDbContext context, IHotelRepository hotelRepository)
         {
             _uow = uow;
             _mapper = mapper;
-            this.hotelRepository = hotelRepository;
+            _context = context;
+            _hotelRepository = hotelRepository;
         }
 
         public async Task<IEnumerable<HotelViewModel>> GetAll()
         {
-            //_uow.GetRepository<Article>(); =>Reoısitory<Artşcle> a karşılık gelir
             var list = await _uow.GetRepository<Hotel>().GetAllAsync();
             return _mapper.Map<List<HotelViewModel>>(list);
         }
-
-       
 
         public Task Add(HotelViewModel model)
         {
@@ -50,10 +46,17 @@ namespace Service.Services
             throw new NotImplementedException();
         }
 
-        public async Task<List<HotelViewModel>> GetFilteredHotels(DateTime checkInDate, DateTime checkOutDate, string City, string Type)
+        public async Task<List<HotelViewModel>> GetFilteredHotels(DateTime checkInDate, DateTime checkOutDate, string city, string type)
         {
-            return await hotelRepository.GetAvailableHotelsAsync(checkInDate, checkOutDate, City, Type);
+            return await _hotelRepository.GetAvailableHotelsAsync(checkInDate, checkOutDate, city, type);
         }
 
+        public async Task<List<string>> GetCities()
+        {
+            return await _context.Hotels
+                .Select(h => h.City)
+                .Distinct()
+                .ToListAsync();
+        }
     }
 }

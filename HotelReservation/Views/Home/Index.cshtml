@@ -1,4 +1,4 @@
-﻿@model ReservationViewModel
+﻿@model Entity.ViewModels.SearchViewModel
 @{
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_LayoutHotel.cshtml";
@@ -20,15 +20,14 @@
 <link rel="stylesheet" href="~/themes/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="~/themes/css/jquery.timepicker.css">
 
-
 <link rel="stylesheet" href="~/themes/css/flaticon.css">
 <link rel="stylesheet" href="~/themes/css/icomoon.css">
 <link rel="stylesheet" href="~/themes/css/style.css">
-<div class="hero-wrap js-fullheight" style=" background-image:url('/themes/images/bg_1.jpg')">
+<div class="hero-wrap js-fullheight" style="background-image:url('/themes/images/bg_1.jpg')">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
-            <div class="col-md-9 ftco-animate mb-5 pb-5 text-center text-md-left" data-scrollax=" properties: { translateY: '70%' }">
+            <div class="col-md-9 ftco-animate mb-5 pb-5 text-center text-md-left" data-scrollax="properties: { translateY: '70%' }">
                 <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Yeni <br>Yerleri keşfet</h1>
                 <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Gidilecek, gezilecek, konaklanacak harika yerleri bulun!</p>
             </div>
@@ -47,14 +46,15 @@
 
 
                     <div class="tab-pane fade show active" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-performance-tab">
-                        <form asp-action="Filter" asp-controller="Home" method="get" class="search-destination">
+                        <form asp-action="Filter" asp-controller="Home" method="get" class="search-destination needs-validation" novalidate>
                             <div class="row">
                                 <div class="col-md align-items-end">
                                     <div class="form-group">
                                         <label asp-for="CheckInDate">Giriş</label>
                                         <div class="form-field">
                                             <div class="icon"><span class="icon-map-marker"></span></div>
-                                            <input type="text" asp-for="CheckInDate" class="form-control checkin_date" placeholder="Giriş Tarihi">
+                                            <input type="text" asp-for="CheckInDate" class="form-control checkin_date" placeholder="Giriş Tarihi" required>
+                                            <div class="invalid-feedback">Giriş tarihini girin.</div>
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +63,8 @@
                                         <label asp-for="CheckOutDate">Çıkış</label>
                                         <div class="form-field">
                                             <div class="icon"><span class="icon-map-marker"></span></div>
-                                            <input type="text" asp-for="CheckOutDate" class="form-control checkout_date" placeholder="Çıkış Tarihi">
+                                            <input type="text" asp-for="CheckOutDate" class="form-control checkout_date" placeholder="Çıkış Tarihi" required>
+                                            <div class="invalid-feedback">Çıkış tarihini girin.</div>
                                         </div>
                                     </div>
                                 </div>
@@ -71,24 +72,33 @@
                                     <div class="form-group">
                                         <label asp-for="City">Nereye</label>
                                         <div class="form-field">
-                                            <div class="icon"><span class="icon-map-marker"></span></div>
-                                            <input asp-for="City" type="text" class="form-control" placeholder="Otel adı, şehir veya bölge">
+                                            <div class="select-wrap">
+                                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                                <select asp-for="City" class="form-control" required>
+                                                    <option value="" disabled selected>Şehir Seçin</option>
+                                                    @foreach (var city in Model.Cities)
+                                                    {
+                                                        <option value="@city">@city</option>
+                                                    }
+                                                </select>
+                                                <div class="invalid-feedback">Şehir seçin.</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md align-items-end">
                                     <div class="form-group">
-                                        <label for="Type">Oda Tipi</label>
+                                        <label asp-for="Type">Oda Tipi</label>
                                         <div class="form-field">
                                             <div class="select-wrap">
                                                 <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                                <select asp-for="Type" class="form-control">
+                                                <select asp-for="Type" class="form-control" required>
                                                     <option value="Tek Kişilik">Tek Kişilik</option>
                                                     <option value="Çift Kişilik">Çift Kişilik</option>
                                                     <option value="Aile Odası">Aile Odası</option>
                                                     <option value="Süit">Süit</option>
-
                                                 </select>
+                                                <div class="invalid-feedback">Oda tipi seçin.</div>
                                             </div>
                                         </div>
                                     </div>
@@ -255,6 +265,24 @@
     </div>
 </section>
 
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+
 <script src="~/themes/js/jquery.min.js"></script>
 <script src="~/themes/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="~/themes/js/popper.min.js"></script>
@@ -272,3 +300,23 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="~/themes/js/google-map.js"></script>
 <script src="~/themes/js/main.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.checkin_date').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true
+        }).on('changeDate', function (e) {
+            $(this).datepicker('hide');
+        });
+
+        $('.checkout_date').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true
+        }).on('changeDate', function (e) {
+            $(this).datepicker('hide');
+        });
+    });
+</script>
