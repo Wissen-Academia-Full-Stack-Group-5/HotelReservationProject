@@ -39,7 +39,7 @@
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"><a href="index.html" class="nav-link"> Anasayfa </a></li>
-                    <li class="nav-item"><a href="about.html" class="nav-link"> Hakkımızda </a></li>
+                    <li class="nav-item"><a asp-controller="About" asp-action="Index" class="nav-link"> Hakkımızda </a></li>
                     <li class="nav-item"><a href="places.html" class="nav-link"> Oteller </a></li>
                     @if (User.Identity.IsAuthenticated)
                     {
