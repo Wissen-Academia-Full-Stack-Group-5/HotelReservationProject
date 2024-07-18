@@ -58,5 +58,11 @@ namespace Service.Services
                 .Distinct()
                 .ToListAsync();
         }
+
+        public async Task<Hotel> GetHotelById(int id)
+        {
+            return await _context.Hotels.FirstOrDefaultAsync(h => h.HotelId == id);
+
+        }
     }
 }

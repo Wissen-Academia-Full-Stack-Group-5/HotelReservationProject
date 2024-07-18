@@ -1,63 +1,75 @@
-﻿using AutoMapper;
-using Data.Contexts;
-using Entity.Entites;
-using Entity.Repositories;
+﻿using Data.Contexts;
 using Entity.Services;
-using Entity.UnitOfWorks;
 using Entity.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Service.Services
+public class RoomService : IRoomService
 {
-	public class RoomService : IRoomService
-	{
-		private readonly HotelDbContext _dbContext;
-		private readonly IUnitOfWork unitOfWork;
-		private readonly IMapper mapper;
-		public RoomService(IUnitOfWork unitOfWork, IMapper mapper, HotelDbContext dbContext)
-		{
-			this.unitOfWork = unitOfWork;
-			this.mapper = mapper;
-			_dbContext = dbContext;
-		}
+    private readonly HotelDbContext _context;
 
-		public Task Add(RoomViewModel model)
-		{
-			throw new NotImplementedException();
-		}
+    public RoomService(HotelDbContext context)
+    {
+        _context = context;
+    }
 
-		public async Task<List<RoomViewModel>> Get(int hotelId)
-		{
-            var rooms = await _dbContext.Rooms
-        .Where(r => r.HotelId == hotelId) // HotelId ile filtreleme yapıyoruz
-        .Select(r => new RoomViewModel
-        {
-            RoomId = r.RoomId,
-            HotelId = r.HotelId,
-            Description = r.Description,
-            Price = r.Price,
-            PictureUrl = r.PictureUrl,
-            City = r.Hotel.City,
-            Country = r.Hotel.Country
-            // Diğer özellikler
-        })
-        .ToListAsync();
+    public async Task<List<RoomViewModel>> GetAvailableRooms(int hotelId, DateTime checkInDate, DateTime checkOutDate)
+    {
+        var reservedRooms = await _context.Reservations
+            .Where(r => r.CheckInDate < checkOutDate && r.CheckOutDate > checkInDate)
+            .Select(r => r.RoomId)
+            .ToListAsync();
 
-            return rooms;
+        var rooms = await _context.Rooms
+            .Where(r => r.HotelId == hotelId)
+            .Select(r => new RoomViewModel
+            {
+                RoomId = r.RoomId,
+                RoomNumber = r.RoomNumber,
+                Type = r.Type,
+                Price = r.Price,
+                Description = r.Description,
+                IsAvailable = !reservedRooms.Contains(r.RoomId)
+            })
+            .ToListAsync();
 
-        }
+        return rooms;
+    }
 
-		public async Task<IEnumerable<RoomViewModel>> GetAll()
-		{
-			var list = await unitOfWork.GetRepository<Room>().GetAllAsync();
-			return mapper.Map<List<RoomViewModel>>(list);
-		}
+    public async Task<List<RoomViewModel>> GetRoomsByHotel(int hotelId, DateTime checkInDate, DateTime checkOutDate)
+    {
+        var rooms = await _context.Rooms
+            .Where(r => r.HotelId == hotelId)
+            .Select(r => new RoomViewModel
+            {
+                RoomId = r.RoomId,
+                RoomNumber = r.RoomNumber,
+                Type = r.Type,
+                Price = r.Price,
+                Description = r.Description,
+                PictureUrl = r.PictureUrl,
+                IsAvailable = !_context.Reservations.Any(res => res.RoomId == r.RoomId &&
+                                                               ((checkInDate >= res.CheckInDate && checkInDate <= res.CheckOutDate) ||
+                                                                (checkOutDate >= res.CheckInDate && checkOutDate <= res.CheckOutDate)))
+            }).ToListAsync();
 
-       
+        return rooms;
+    }
+
+    public async Task<List<RoomViewModel>> GetRoomsByHotelAndDateAsync(int hotelId, DateTime checkInDate, DateTime checkOutDate)
+    {
+        var rooms = await _context.Rooms
+                .Where(r => r.HotelId == hotelId)
+                .Select(r => new RoomViewModel
+                {
+                    RoomId = r.RoomId,
+                    Type = r.Type,
+                    RoomNumber = r.RoomNumber,
+                    Price = r.Price,
+                    Description = r.Description,
+                    IsAvailable = !r.Reservations.Any(res => res.CheckInDate < checkOutDate && res.CheckOutDate > checkInDate)
+                }).ToListAsync();
+
+        return rooms;
     }
 }

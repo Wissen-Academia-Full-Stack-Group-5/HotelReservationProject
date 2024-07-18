@@ -14,12 +14,14 @@ namespace HotelReservation.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IHotelService _hotelService;
         private readonly IRoomService _roomService;
+        private readonly IReservationService _reservationService;
 
-        public HomeController(ILogger<HomeController> logger, IHotelService hotelService, IRoomService roomService)
+        public HomeController(ILogger<HomeController> logger, IHotelService hotelService, IRoomService roomService, IReservationService reservationService)
         {
             _logger = logger;
             _hotelService = hotelService;
             _roomService = roomService;
+            _reservationService = reservationService;
         }
 
         public async Task<IActionResult> Index()
@@ -49,14 +51,32 @@ namespace HotelReservation.Controllers
                 return View("Index", model);
             }
 
+            ViewData["CheckInDate"] = checkInDate.ToString("yyyy-MM-dd");
+            ViewData["CheckOutDate"] = checkOutDate.ToString("yyyy-MM-dd");
+
             var hotel = await _hotelService.GetFilteredHotels(checkInDate, checkOutDate, City, Type);
             return View(hotel);
         }
 
-        public async Task<IActionResult> Detail(int Id)
+        public async Task<IActionResult> Detail(int id, DateTime checkInDate, DateTime checkOutDate)
         {
-            var rooms = await _roomService.Get(Id);
-            return View(rooms); // List<RoomViewModel> döndürüyoruz
+            var rooms = await _roomService.GetRoomsByHotel(id, checkInDate, checkOutDate);
+            var hotel = await _hotelService.GetHotelById(id);
+
+            var model = rooms.Select(room => new RoomViewModel
+            {
+                RoomId = room.RoomId,
+                RoomNumber = room.RoomNumber,
+                Type = room.Type,
+                Price = room.Price,
+                Description = room.Description,
+                IsAvailable = room.IsAvailable,
+                City = hotel.City,
+                Country = hotel.Country,
+                PictureUrl = room.PictureUrl
+            }).ToList();
+
+            return View(model);
         }
 
         public IActionResult Privacy()

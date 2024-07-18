@@ -13,6 +13,8 @@ namespace Entity.Services
         Task<IEnumerable<HotelViewModel>> GetAll();
 
         Task<HotelViewModel> Get(int id);
+        Task<Hotel> GetHotelById(int id);
+
         Task Add(HotelViewModel model);
         Task<List<HotelViewModel>> GetFilteredHotels(DateTime checkInDate, DateTime checkOutDate, string City, string Type);
         Task<List<string>> GetCities();

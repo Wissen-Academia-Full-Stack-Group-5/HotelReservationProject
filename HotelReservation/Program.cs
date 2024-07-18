@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using HotelReservation.Models;
 using Service.Extensions;
 using Data.Identity;
+using Entity.Services;
+using Service.Services;
 
 namespace HotelReservation
 {
@@ -18,7 +20,11 @@ namespace HotelReservation
             builder.Services.AddDbContext<HotelDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("ConnStr")));
 
-           
+            builder.Services.AddScoped<IRoomService, RoomService>();
+            builder.Services.AddScoped<IHotelService, HotelService>();
+            builder.Services.AddScoped<IReservationService, ReservationService>();
+
+
 
             builder.Services.AddExtensions();
 
