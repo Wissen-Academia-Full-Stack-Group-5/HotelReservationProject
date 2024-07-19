@@ -18,5 +18,6 @@ namespace Entity.ViewModels
         public string Country { get; set; }
         public string PictureUrl { get; set; }
         public int HotelId { get; set; }
+
     }
 }

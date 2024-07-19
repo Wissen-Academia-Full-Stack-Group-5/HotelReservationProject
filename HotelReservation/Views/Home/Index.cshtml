@@ -83,17 +83,17 @@
                                 </div>
                                 <div class="col-md align-items-end">
                                     <div class="form-group">
-                                        <label asp-for="Type">Oda Tipi</label>
+                                        <label asp-for="NumberOfGuests">Kişi Sayısı</label>
                                         <div class="form-field">
-                                            <div class="select-wrap">
-                                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                                <select asp-for="Type" class="form-control" required>
-                                                    <option value="Tek Kişilik">Tek Kişilik</option>
-                                                    <option value="Çift Kişilik">Çift Kişilik</option>
-                                                    <option value="Aile Odası">Aile Odası</option>
-                                                    <option value="Süit">Süit</option>
-                                                </select>
-                                                <div class="invalid-feedback">Oda tipi seçin.</div>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <button type="button" class="btn btn-outline-secondary" id="decreaseGuests">-</button>
+                                                </div>
+                                                <input type="text" asp-for="NumberOfGuests" class="form-control text-center" value="1" readonly required>
+                                                <div class="input-group-append">
+                                                    <button type="button" class="btn btn-outline-secondary" id="increaseGuests">+</button>
+                                                </div>
+                                                <div class="invalid-feedback">Kişi sayısını girin.</div>
                                             </div>
                                         </div>
                                     </div>
@@ -138,7 +138,6 @@
         </div>
     </div>
 </section>
-
 <section class="ftco-about d-md-flex">
     <div class="one-half img" style="background-image: url(themes/images/about.jpg); border-right:5px solid gray;border-radius: 2px; transform: scale(0.95);"></div>
     <div class="one-half ftco-animate">
@@ -258,7 +257,6 @@
         </div>
     </div>
 </section>
-
 <script>
     (function () {
         'use strict';
@@ -275,6 +273,22 @@
             });
         }, false);
     })();
+
+    document.getElementById('decreaseGuests').addEventListener('click', function () {
+        var input = document.querySelector('input[name="NumberOfGuests"]');
+        var value = parseInt(input.value);
+        if (value > 1) {
+            input.value = value - 1;
+        }
+    });
+
+    document.getElementById('increaseGuests').addEventListener('click', function () {
+        var input = document.querySelector('input[name="NumberOfGuests"]');
+        var value = parseInt(input.value);
+        if (value < 10) { // Max 10 kişi sınırı koyabilirsiniz
+            input.value = value + 1;
+        }
+    });
 </script>
 
 <script src="~/themes/js/jquery.min.js"></script>

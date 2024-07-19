@@ -13,5 +13,7 @@ namespace Entity.ViewModels
         public string City { get; set; }
         public string Type { get; set; }
         public List<string> Cities { get; set; }
+        public int NumberOfGuests { get; set; }
+
     }
 }

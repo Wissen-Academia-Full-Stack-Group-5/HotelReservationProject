@@ -24,7 +24,7 @@ namespace HotelReservation.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Create(int roomId, DateTime checkInDate, DateTime checkOutDate)
+        public async Task<IActionResult> Create(int roomId, DateTime checkInDate, DateTime checkOutDate, int numberOfGuests = 1)
         {
             // Oturum açmış kullanıcının kimliğini al
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -58,7 +58,7 @@ namespace HotelReservation.Controllers
             await _context.SaveChangesAsync();
 
             // Payment sayfasına yönlendirme
-            return RedirectToAction("Create", "Payments", new { reservationId = reservation.ReservationId });
+            return RedirectToAction("Create", "Payments", new { reservationId = reservation.ReservationId, checkInDate = checkInDate, checkOutDate = checkOutDate, numberOfGuests = numberOfGuests });
         }
 
         [HttpGet]

@@ -4,12 +4,65 @@
     ViewData["Title"] = "All Hotels";
     Layout = "~/Views/Shared/_LayoutHotel.cshtml";
 }
+<style>
+    body {
+        background-color: #f8f8f8;
+    }
 
+    .hero-wrap {
+        position: relative;
+        width: 100%;
+        height: 50vh;
+        background-size: cover;
+        background-position: center center;
+        margin-bottom: 0;
+    }
+
+        .hero-wrap .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+    .ftco-section {
+        padding-top: 0;
+    }
+
+    .mt-0 {
+        margin-top: 0;
+    }
+
+    .mt-2 {
+        margin-top: 2rem;
+    }
+
+    .underline {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="hero-wrap js-fullheight" style="background-image: url('/themes/images/bg_1.jpg');">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+            <div class="col-md-9 text-center ftco-animate" data-scrollax="properties: { translateY: '70%' }">
+                <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+                    <span class="mr-2"><a asp-controller="Home" asp-action="Index">Anasayfa</a></span>
+                </p>
+                <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Oteller</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
 <section class="ftco-section bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <h2 class="text-center">Tüm Oteller</h2>
+            <div class="col-md-12 text-center">
+                <h3 class="display-4 mt-0" style="letter-spacing: 2px;">Tüm Oteller</h3>
                 <hr />
             </div>
         </div>
@@ -18,7 +71,7 @@
         {
             <div class="row">
                 <div class="col-md-12">
-                    <h3>@group.City</h3>
+                    <h3 class="underline mt-2">@group.City</h3>
                 </div>
 
                 @foreach (var hotel in group.Hotels)
@@ -33,17 +86,16 @@
                             <div class="text p-3">
                                 <div class="d-flex">
                                     <div class="one">
-                                        <h3><a href="#">@hotel.Name</a></h3>
-                                    </div>
-                                    <div class="two">
-                                        <span class="price per-price">40<br><small>/night</small></span>
+                                        <h3><a asp-controller="Home" asp-action="Detail" asp-route-id="@hotel.HotelId">@hotel.Name</a></h3>
                                     </div>
                                 </div>
                                 <p>@hotel.Description</p>
                                 <hr>
                                 <p class="bottom-area d-flex">
                                     <span><i class="icon-map-o"></i> @hotel.Address</span>
-                                    <span class="ml-auto"><a href="#">Book Now</a></span>
+                                    <span class="ml-auto">
+                                        <a asp-controller="Home" asp-action="Detail" asp-route-id="@hotel.HotelId" class="btn btn-primary btn-sm">Odaları Görüntüle</a>
+                                    </span>
                                 </p>
                             </div>
                         </div>

@@ -48,7 +48,19 @@ namespace Service.Services
 
         public async Task<List<HotelViewModel>> GetFilteredHotels(DateTime checkInDate, DateTime checkOutDate, string city, string type)
         {
-            return await _hotelRepository.GetAvailableHotelsAsync(checkInDate, checkOutDate, city, type);
+            var hotels = await _hotelRepository.GetAvailableHotelsAsync(checkInDate, checkOutDate, city, type);
+
+            var hotelViewModels = hotels.Select(hotel => new HotelViewModel
+            {
+                HotelId = hotel.HotelId,
+                Name = hotel.Name,
+                Address = hotel.Address, // Address bilgisini ekliyoruz
+                City = hotel.City,
+                Country = hotel.Country,
+                PictureUrl = hotel.PictureUrl
+            }).ToList();
+
+            return hotelViewModels;
         }
 
         public async Task<List<string>> GetCities()

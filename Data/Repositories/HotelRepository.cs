@@ -33,12 +33,15 @@ namespace Data.Repositories
                 HotelId = h.HotelId,
                 Name = h.Name,
                 City = h.City,
+                Country = h.Country,
+                Address = h.Address, // Address bilgisi eklendi
                 PictureUrl = h.PictureUrl,
-                Type = Type 
+                Type = Type
             }).ToList();
 
             return hotelViewModels;
         }
+
 
     }
 }

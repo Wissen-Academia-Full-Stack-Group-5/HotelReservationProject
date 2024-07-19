@@ -17,7 +17,7 @@ namespace HotelReservation.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Create(int reservationId)
+        public async Task<IActionResult> Create(int reservationId, DateTime checkInDate, DateTime checkOutDate, int numberOfGuests)
         {
             var reservation = await _context.Reservations
                 .Include(r => r.Room)
@@ -29,11 +29,33 @@ namespace HotelReservation.Controllers
                 return NotFound();
             }
 
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.IdentityUserId == userId);
+
+            if (customer == null)
+            {
+                return NotFound("Customer not found for the current user.");
+            }
+
+            var expirationDate = DateTime.TryParse(customer.ExpirationDate, out var parsedExpirationDate)
+                ? parsedExpirationDate
+                : (DateTime?)null;
+
             var model = new PaymentViewModel
             {
                 ReservationId = reservationId,
-                Amount = reservation.TotalPrice,
-                PaymentDate = DateTime.Now
+                Amount = 0, // Initial amount set to 0, will be calculated in frontend
+                PaymentDate = DateTime.Now,
+                NumberOfGuests = numberOfGuests,
+                CheckInDate = checkInDate,
+                CheckOutDate = checkOutDate,
+                CardHolderName = customer.CardHolderName,
+                CardNumber = customer.CardNumber,
+                ExpirationDate = expirationDate.HasValue ? expirationDate.Value : DateTime.MinValue,
+                CVV = customer.CVV,
+                Address = customer.Address,
+                TCKimlikNo = customer.TCKimlikNo,
+                RoomPrice = reservation.Room.Price // Room price is added to the model
             };
 
             return View(model);
@@ -54,24 +76,10 @@ namespace HotelReservation.Controllers
 
                 _context.Payments.Add(payment);
 
-                // Rezervasyon durumunu güncelle
                 var reservation = await _context.Reservations.FindAsync(model.ReservationId);
                 if (reservation != null)
                 {
                     reservation.ReservationStatus = "Onaylandı";
-                }
-
-                // Müşteri bilgilerini güncelle
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var customer = await _context.Customers.FirstOrDefaultAsync(c => c.IdentityUserId == userId);
-                if (customer != null)
-                {
-                    customer.CardHolderName = model.CardHolderName;
-                    customer.CardNumber = model.CardNumber;
-                    customer.ExpirationDate = model.ExpirationDate;
-                    customer.CVV = model.CVV;
-                    customer.Address = model.Address;
-                    customer.TCKimlikNo = model.TCKimlikNo;
                 }
 
                 await _context.SaveChangesAsync();
