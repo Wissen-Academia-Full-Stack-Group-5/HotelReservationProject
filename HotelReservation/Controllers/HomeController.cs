@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Service.Services;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Linq;
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace HotelReservation.Controllers
 {
@@ -63,6 +66,9 @@ namespace HotelReservation.Controllers
             var rooms = await _roomService.GetRoomsByHotel(id, checkInDate, checkOutDate);
             var hotel = await _hotelService.GetHotelById(id);
 
+            ViewBag.CheckInDate = checkInDate.ToString("yyyy-MM-dd");
+            ViewBag.CheckOutDate = checkOutDate.ToString("yyyy-MM-dd");
+
             var model = rooms.Select(room => new RoomViewModel
             {
                 RoomId = room.RoomId,
@@ -77,6 +83,12 @@ namespace HotelReservation.Controllers
             }).ToList();
 
             return View(model);
+        }
+
+        public IActionResult AllHotels()
+        {
+            var hotels = _hotelService.GetAllHotelsGroupedByCity();
+            return View(hotels);
         }
 
         public IActionResult Privacy()

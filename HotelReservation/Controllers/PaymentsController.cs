@@ -3,6 +3,7 @@ using Entity.Entites;
 using Entity.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace HotelReservation.Controllers
 {
@@ -60,12 +61,24 @@ namespace HotelReservation.Controllers
                     reservation.ReservationStatus = "Onaylandı";
                 }
 
+                // Müşteri bilgilerini güncelle
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var customer = await _context.Customers.FirstOrDefaultAsync(c => c.IdentityUserId == userId);
+                if (customer != null)
+                {
+                    customer.CardHolderName = model.CardHolderName;
+                    customer.CardNumber = model.CardNumber;
+                    customer.ExpirationDate = model.ExpirationDate;
+                    customer.CVV = model.CVV;
+                    customer.Address = model.Address;
+                    customer.TCKimlikNo = model.TCKimlikNo;
+                }
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Details", "Reservations", new { id = model.ReservationId });
             }
 
             return View(model);
         }
-
     }
 }

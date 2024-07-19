@@ -17,6 +17,7 @@ namespace Entity.Entites
         public decimal Amount { get; set; }
         public string PaymentMethod { get; set; }
 
+
         // Navigation Property
         public Reservation Reservation { get; set; }
     }

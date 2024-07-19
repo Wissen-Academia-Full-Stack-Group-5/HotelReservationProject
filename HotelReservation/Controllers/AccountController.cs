@@ -63,10 +63,10 @@ namespace HotelReservation.Controllers
 			}
 			return View(model);
 		}
-		//public async Task<IActionResult> Logout()
-		//{
-		//	await _service.SignOutAsync();
-		//	return RedirectToAction("Index", "Home");
-		//}
+		public async Task<IActionResult> Logout()
+		{
+			await _service.SignOutAsync();
+			return RedirectToAction("Index", "Home");
+		}
 	}
 }

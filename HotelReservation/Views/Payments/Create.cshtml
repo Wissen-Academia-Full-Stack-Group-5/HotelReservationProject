@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Make a Payment";
-    Layout = "~/Views/Shared/_Layout.cshtml"; // Varsayılan layout dosyanız
+    Layout = "~/Views/Shared/_LayoutHotel.cshtml"; // _LayoutHotel.cshtml dosyasını kullanıyoruz
 }
 
 <section class="payment-section py-5">
@@ -15,10 +15,7 @@
                     </div>
                     <div class="card-body">
                         <form asp-action="Create" method="post" class="needs-validation" novalidate>
-                            <div class="form-group">
-                                <label asp-for="ReservationId" class="form-label">Reservation ID</label>
-                                <input asp-for="ReservationId" class="form-control" readonly />
-                            </div>
+                            
                             <div class="form-group">
                                 <label asp-for="PaymentDate" class="form-label">Payment Date</label>
                                 <input asp-for="PaymentDate" class="form-control" readonly />
@@ -37,6 +34,48 @@
                                 </select>
                                 <div class="invalid-feedback">
                                     Please select a payment method.
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CardHolderName" class="form-label">Card Holder Name</label>
+                                <input asp-for="CardHolderName" class="form-control" required />
+                                <div class="invalid-feedback">
+                                    Please enter the card holder's name.
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CardNumber" class="form-label">Card Number</label>
+                                <input asp-for="CardNumber" class="form-control" required />
+                                <div class="invalid-feedback">
+                                    Please enter the card number.
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ExpirationDate" class="form-label">Expiration Date</label>
+                                <input asp-for="ExpirationDate" class="form-control" required />
+                                <div class="invalid-feedback">
+                                    Please enter the expiration date.
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CVV" class="form-label">CVV</label>
+                                <input asp-for="CVV" class="form-control" required />
+                                <div class="invalid-feedback">
+                                    Please enter the CVV.
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Address" class="form-label">Address</label>
+                                <input asp-for="Address" class="form-control" required />
+                                <div class="invalid-feedback">
+                                    Please enter your address.
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TCKimlikNo" class="form-label">TC Kimlik No</label>
+                                <input asp-for="TCKimlikNo" class="form-control" required />
+                                <div class="invalid-feedback">
+                                    Please enter your TC Kimlik No.
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">Submit Payment</button>

@@ -64,5 +64,21 @@ namespace Service.Services
             return await _context.Hotels.FirstOrDefaultAsync(h => h.HotelId == id);
 
         }
+
+        public List<HotelGroupViewModel> GetAllHotelsGroupedByCity()
+        {
+            var hotels = _context.Hotels.ToList();
+
+            var groupedHotels = hotels
+                .GroupBy(h => h.City)
+                .Select(g => new HotelGroupViewModel
+                {
+                    City = g.Key,
+                    Hotels = g.ToList()
+                })
+                .ToList();
+
+            return groupedHotels;
+        }
     }
 }

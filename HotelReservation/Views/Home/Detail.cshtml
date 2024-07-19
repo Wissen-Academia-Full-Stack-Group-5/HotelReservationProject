@@ -12,6 +12,25 @@
 </head>
 <body>
 
+    <div class="hero-wrap js-fullheight" style="background-image: url('/themes/images/bg_1.jpg');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+                <div class="col-md-9 text-center ftco-animate" data-scrollax="properties: { translateY: '70%' }">
+                    <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a asp-controller="Home" asp-action="Index">Anasayfa</a></span> <span>Hotel</span></p>
+                    <h1 class="mb3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Odalar</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <hr />
+    <br />
+    <h1 class="mb-3 bread text-uppercase" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }" style="text-align: center; letter-spacing: 2px;">
+        @Model.First().City
+    </h1>
+    <hr />
+
     <div class="container">
         <div class="row">
 
@@ -19,24 +38,25 @@
             {
                 <div class="col-md-4 hotel-single ftco-animate mb-5 mt-4">
                     <div class="destination">
-                        <a href="hotel-single.html" class="img img-2" style="background-image: url(@item.PictureUrl);"></a>
-                        <div class="text p-3">
+                        <a asp-controller="Reservation" asp-action="Create" asp-route-roomId="@item.RoomId" asp-route-checkInDate="@ViewData["CheckInDate"]" asp-route-checkOutDate="@ViewData["CheckOutDate"]" class="img img-2" style="background-image: url(@item.PictureUrl);"></a>
+                        <hr />
+                        <div class="text">
                             <div class="d-flex">
-                                <div class="one">
-                                    <h3>Type: @item.Type</h3>
-                                    <p>Oda Numarası: @item.RoomNumber </p>
-                                    <p>Fiyat: @item.Price ₺/gecelik</p>
-                                    <p>Açıklama: @item.Description</p>
-                                    <p>Müsaitlik: @(item.IsAvailable ? "Müsait" : "Dolu")</p>
-                                    <p>Şehir: @item.City</p>
-                                    <p>Ülke: @item.Country</p>
+                                <div class="card border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Oda Tipi: @item.Type</h5>
+                                        <p class="card-text">Oda Numarası: @item.RoomNumber</p>
+                                        <p class="card-text">Fiyat: @item.Price ₺/gecelik</p>
+                                        <p class="card-text">Müsaitlik: @(item.IsAvailable ? "Müsait" : "Dolu")</p>
+                                        <p class="card-text">@item.Description</p>
+                                    </div>
                                 </div>
                             </div>
                             <hr>
                             <p class="bottom-area d-flex">
                                 <span><i class="icon-map-o"></i> @item.City, @item.Country</span>
                                 <span class="ml-auto">
-                                    <a asp-controller="Reservation" asp-action="Create" asp-route-roomId="@item.RoomId" class="btn btn-link">Book Now</a>
+                                    <a asp-controller="Reservation" asp-action="Create" asp-route-roomId="@item.RoomId" asp-route-checkInDate="@ViewData["CheckInDate"]" asp-route-checkOutDate="@ViewData["CheckOutDate"]" class="btn btn-primary btn-sm">Rezervasyon Yap </a>
                                 </span>
                             </p>
                         </div>
