@@ -11,5 +11,7 @@ namespace Entity.Repositories
     public interface IHotelRepository
     {
         Task<List<HotelViewModel>> GetAvailableHotelsAsync(DateTime CheckInDate, DateTime CheckOutDate, string City, string Type);
+        IEnumerable<Hotel> GetAll();
+        void Add(Hotel hotel);
     }
 }

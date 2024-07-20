@@ -15,10 +15,10 @@ namespace Service.Mapping
     {
         public MappingProfile()
         {
-         CreateMap<Hotel, HotelViewModel>().ReverseMap();
-         CreateMap<Reservation, ReservationViewModel>().ReverseMap();
-			CreateMap<AppUser, UserViewModel>().ReverseMap();
-			CreateMap<AppUser, LoginViewModel>().ReverseMap();
+            CreateMap<Hotel, HotelViewModel>().ReverseMap();
+            CreateMap<Reservation, ReservationViewModel>().ReverseMap();
+		    CreateMap<AppUser, UserViewModel>().ReverseMap();
+		    CreateMap<AppUser, LoginViewModel>().ReverseMap();
             CreateMap<AppRole, RoleViewModel>().ReverseMap();
             CreateMap<Room, RoomViewModel>().ReverseMap();
 

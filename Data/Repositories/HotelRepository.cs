@@ -20,6 +20,17 @@ namespace Data.Repositories
             _context = context;
         }
 
+        public void Add(Hotel hotel)
+        {
+            _context.Hotels.Add(hotel);
+            _context.SaveChanges();
+        }
+
+        public IEnumerable<Hotel> GetAll()
+        {
+            return _context.Hotels.ToList();
+        }
+
         public async Task<List<HotelViewModel>> GetAvailableHotelsAsync(DateTime CheckInDate, DateTime CheckOutDate, string City, string Type)
         {
             var availableHotels = await _context.Hotels

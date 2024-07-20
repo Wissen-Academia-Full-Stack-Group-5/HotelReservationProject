@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Payments\Success.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -19,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Payments\Success.cshtml" />
     <None Include="wwwroot\sneat\.github\workflows\handle-new-issue-comment.yml" />
     <None Include="wwwroot\sneat\.github\workflows\handle-new-issue.yml" />
     <None Include="wwwroot\sneat\.github\workflows\issue-staler.yml" />
@@ -37,6 +42,14 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Payments\Success.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Payments\Success.cshtml" />
   </ItemGroup>
 
 </Project>

@@ -3,6 +3,10 @@
 @{
     ViewData["Title"] = "Detail";
     Layout = "~/Views/Shared/_LayoutHotel.cshtml";
+
+    DateTime checkInDate = DateTime.Parse(ViewData["CheckInDate"].ToString());
+    DateTime checkOutDate = DateTime.Parse(ViewData["CheckOutDate"].ToString());
+    int numberOfGuests = Convert.ToInt32(ViewData["NumberOfGuests"]);
 }
 
 <!DOCTYPE html>
@@ -36,7 +40,12 @@
             {
                 <div class="col-md-4 hotel-single ftco-animate mb-5 mt-4">
                     <div class="destination">
-                        <a asp-controller="Reservation" asp-action="Create" asp-route-roomId="@item.RoomId" asp-route-checkInDate="@ViewData["CheckInDate"]" asp-route-checkOutDate="@ViewData["CheckOutDate"]" asp-route-numberOfGuests="@ViewData["NumberOfGuests"]" class="img img-2" style="background-image: url(@item.PictureUrl);"></a>
+                        <a asp-controller="Reservation" asp-action="ConfirmReservationGet"
+                           asp-route-roomId="@item.RoomId"
+                           asp-route-checkInDate="@checkInDate.ToString("yyyy-MM-dd")"
+                           asp-route-checkOutDate="@checkOutDate.ToString("yyyy-MM-dd")"
+                           asp-route-numberOfGuests="@numberOfGuests"
+                           class="img img-2" style="background-image: url(@item.PictureUrl);"></a>
                         <hr />
                         <div class="text">
                             <div class="d-flex">
@@ -45,7 +54,7 @@
                                         <h5 class="card-title">Oda Tipi: @item.Type</h5>
                                         <p class="card-text">Oda Numarası: @item.RoomNumber</p>
                                         <p class="card-text">Fiyat: @item.Price ₺/gecelik</p>
-                                        <p class="card-text">Toplam Fiyat: @(item.Price * Convert.ToDecimal(((DateTime)ViewData["CheckOutDate"] - (DateTime)ViewData["CheckInDate"]).TotalDays) * (int)ViewData["NumberOfGuests"]) ₺</p>
+                                        <p class="card-text">Toplam Fiyat: @(item.Price * Convert.ToDecimal((checkOutDate - checkInDate).TotalDays) * numberOfGuests) ₺</p>
                                         <p class="card-text">Müsaitlik: @(item.IsAvailable ? "Müsait" : "Dolu")</p>
                                         <p class="card-text">@item.Description</p>
                                     </div>
@@ -54,9 +63,14 @@
                             <hr>
                             <p class="bottom-area d-flex">
                                 <span><i class="icon-map-o"></i> @item.City, @item.Country</span>
-                                <span class="ml-auto">
-                                    <a asp-controller="Reservation" asp-action="Create" asp-route-roomId="@item.RoomId" asp-route-checkInDate="@ViewData["CheckInDate"]" asp-route-checkOutDate="@ViewData["CheckOutDate"]" asp-route-numberOfGuests="@ViewData["NumberOfGuests"]" class="btn btn-primary btn-sm">Rezervasyon Yap</a>
-                                </span>
+                                <a asp-controller="Reservation" asp-action="ConfirmReservationGet"
+                                   asp-route-roomId="@item.RoomId"
+                                   asp-route-checkInDate="@checkInDate.ToString("yyyy-MM-dd")"
+                                   asp-route-checkOutDate="@checkOutDate.ToString("yyyy-MM-dd")"
+                                   asp-route-numberOfGuests="@numberOfGuests"
+                                   class="btn btn-primary btn-sm">
+                                    Rezervasyon Yap
+                                </a>
                             </p>
                         </div>
                     </div>

@@ -1,0 +1,83 @@
+﻿@model Entity.ViewModels.ReservationViewModel
+
+@{
+    ViewData["Title"] = "Confirm Reservation";
+    Layout = "~/Views/Shared/_LayoutHotel.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Confirm Reservation</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Confirm Reservation</h2>
+
+        <!-- TempData mesajlarını göstermek için -->
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
+        <!-- ModelState hatalarını göstermek için -->
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <li>@error.ErrorMessage</li>
+                    }
+                </ul>
+            </div>
+        }
+
+        <form asp-action="ConfirmReservationPost" method="post">
+            <input type="hidden" asp-for="RoomId" />
+            <input type="hidden" asp-for="CustomerId" />
+            <div class="form-group">
+                <label>Check-In Date</label>
+                <input type="text" class="form-control" asp-for="CheckInDate" readonly />
+            </div>
+            <div class="form-group">
+                <label>Check-Out Date</label>
+                <input type="text" class="form-control" asp-for="CheckOutDate" readonly />
+            </div>
+            <div class="form-group">
+                <label>Number of Guests</label>
+                <input type="text" class="form-control" asp-for="NumberOfGuests" readonly />
+            </div>
+            <div class="form-group">
+                <label>Room Price</label>
+                <input type="text" class="form-control" asp-for="RoomPrice" readonly />
+            </div>
+            <div class="form-group">
+                <label>Total Price</label>
+                <input type="text" class="form-control" asp-for="TotalPrice" readonly />
+            </div>
+            <div class="form-group">
+                <label>City</label>
+                <input type="text" class="form-control" asp-for="City" readonly />
+            </div>
+            <div class="form-group">
+                <label>Type</label>
+                <input type="text" class="form-control" asp-for="Type" readonly />
+            </div>
+            <div class="form-group">
+                <label>Reservation Status</label>
+                <input type="text" class="form-control" asp-for="ReservationStatus" readonly />
+            </div>
+            <button type="submit" class="btn btn-primary">Confirm and Proceed to Payment</button>
+        </form>
+    </div>
+</body>
+</html>

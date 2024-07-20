@@ -10,11 +10,20 @@ namespace Entity.Services
 {
     public interface IHotelService
     {
-        Task<IEnumerable<HotelViewModel>> GetAll();
 
-        Task<HotelViewModel> Get(int id);
+
+
         Task<Hotel> GetHotelById(int id);
         List<HotelGroupViewModel> GetAllHotelsGroupedByCity();
+
+
+
+
+        Task<IEnumerable<HotelViewModel>> GetAll();
+        Task<HotelViewModel> GetHotelByHotelId(int HotelId);
+        Task<HotelViewModel> Get(int id);
+        Task Delete(int id);
+        Task Update(HotelViewModel model);
         Task Add(HotelViewModel model);
         Task<List<HotelViewModel>> GetFilteredHotels(DateTime checkInDate, DateTime checkOutDate, string City, string Type);
         Task<List<string>> GetCities();

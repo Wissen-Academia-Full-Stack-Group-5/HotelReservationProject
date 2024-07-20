@@ -92,12 +92,13 @@ namespace HotelReservation.Controllers
                 PictureUrl = room.PictureUrl
             }).ToList();
 
-            ViewData["CheckInDate"] = checkInDate;
-            ViewData["CheckOutDate"] = checkOutDate;
+            ViewData["CheckInDate"] = checkInDate.ToString("yyyy-MM-dd");
+            ViewData["CheckOutDate"] = checkOutDate.ToString("yyyy-MM-dd");
             ViewData["NumberOfGuests"] = numberOfGuests;
 
             return View(model);
         }
+
 
 
 

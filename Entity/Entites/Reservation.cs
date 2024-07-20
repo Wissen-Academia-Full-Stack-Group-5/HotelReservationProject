@@ -22,5 +22,7 @@ namespace Entity.Entites
         public Customer Customer { get; set; }
         public Room Room { get; set; }
         public ICollection<Payment> Payments { get; set; }
+        public int NumberOfGuests { get; set; }
+
     }
 }

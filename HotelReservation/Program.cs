@@ -24,8 +24,6 @@ namespace HotelReservation
             builder.Services.AddScoped<IHotelService, HotelService>();
             builder.Services.AddScoped<IReservationService, ReservationService>();
 
-
-
             builder.Services.AddExtensions();
 
             var app = builder.Build();
@@ -52,13 +50,7 @@ namespace HotelReservation
 
             app.MapControllerRoute(
                 name: "areas",
-                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-            );
-
-            app.MapControllerRoute(
-                name: "area",
-                pattern: "{controller=Home}/{action=Index}/{area=Admin}"
-            );
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }

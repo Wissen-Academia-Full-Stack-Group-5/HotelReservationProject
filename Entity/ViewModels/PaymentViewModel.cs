@@ -1,50 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Entity.ViewModels
+public class PaymentViewModel
 {
-    public class PaymentViewModel
-    {
-        public int ReservationId { get; set; }
+    public int ReservationId { get; set; }
 
-        [Display(Name = "Payment Date")]
-        public DateTime PaymentDate { get; set; }
+    [Required]
+    public string FirstName { get; set; }
 
-        [Display(Name = "Amount")]
-        [DataType(DataType.Currency)]
-        public decimal Amount { get; set; }
+    [Required]
+    public string LastName { get; set; }
 
-        [Display(Name = "Payment Method")]
-        public string PaymentMethod { get; set; }
+    [Required]
+    [EmailAddress]
+    public string Email { get; set; }
 
-        [Display(Name = "Card Holder Name")]
-        public string CardHolderName { get; set; }
+    [Required]
+    [Phone]
+    public string Phone { get; set; }
 
-        [Display(Name = "Card Number")]
-        public string CardNumber { get; set; }
+    [Required]
+    public string CardHolderName { get; set; }
 
-        [Display(Name = "Expiration Date")]
-        [DataType(DataType.Date)]
-        public DateTime ExpirationDate { get; set; }
+    [Required]
+    [CreditCard]
+    public string CardNumber { get; set; }
 
-        [Display(Name = "CVV")]
-        public string CVV { get; set; }
+    [Required]
+    public string ExpirationDate { get; set; }
 
-        [Display(Name = "Address")]
-        public string Address { get; set; }
+    [Required]
+    public string CVV { get; set; }
 
-        [Display(Name = "TCKimlikNo")]
-        public string TCKimlikNo { get; set; }
+    [Required]
+    public string Address { get; set; }
 
-        // Additional properties
-        public int NumberOfGuests { get; set; }
-        public DateTime CheckInDate { get; set; }
-        public DateTime CheckOutDate { get; set; }
-        public decimal RoomPrice { get; set; }
+    [Required]
+    public string TCKimlikNo { get; set; }
 
-    }
+    [Required]
+    public decimal Amount { get; set; }
+
+    [Required]
+    public string PaymentMethod { get; set; }
 }

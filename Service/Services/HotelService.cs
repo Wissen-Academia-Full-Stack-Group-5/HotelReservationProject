@@ -92,5 +92,40 @@ namespace Service.Services
 
             return groupedHotels;
         }
+
+        public async Task<HotelViewModel> GetHotelByHotelId(int HotelId)
+        {
+            var article = await _uow.GetRepository<Hotel>().GetByIdAsync(HotelId);
+            return _mapper.Map<HotelViewModel>(article);
+        }
+
+        public async Task Delete(int id)
+        {
+            var existingHotel = await _context.Hotels.FirstOrDefaultAsync(h => h.HotelId == id);
+
+            if (existingHotel != null)
+            {
+                _context.Hotels.Remove(existingHotel);
+                await _uow.CommitAsync();
+            }
+        }
+        public async Task Update(HotelViewModel model)
+        {
+            var existingHotel = await _context.Hotels.FirstOrDefaultAsync(h => h.HotelId == model.HotelId);
+
+            if (existingHotel != null)
+            {
+                // Mevcut oteli güncelle
+                existingHotel.Name = model.Name;
+                existingHotel.City = model.City;
+                existingHotel.Country = model.Country;
+                existingHotel.Address = model.Address;
+                existingHotel.PictureUrl = model.PictureUrl;
+                existingHotel.Description = model.Description;
+                existingHotel.Rating = model.Rating;
+                // Veritabanındaki değişiklikleri kaydet
+                await _uow.CommitAsync();
+            }
+        }
     }
 }

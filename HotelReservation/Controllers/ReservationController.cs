@@ -1,9 +1,13 @@
 ﻿using Data.Contexts;
+using Data.Identity;
 using Entity.Entites;
+using Entity.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace HotelReservation.Controllers
 {
@@ -12,69 +16,102 @@ namespace HotelReservation.Controllers
     public class ReservationController : Controller
     {
         private readonly HotelDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
 
-        public ReservationController(HotelDbContext context)
+        public ReservationController(HotelDbContext context, UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult ConfirmReservation()
         {
             return View();
         }
 
         [HttpGet]
-        public async Task<IActionResult> Create(int roomId, DateTime checkInDate, DateTime checkOutDate, int numberOfGuests = 1)
+        public async Task<IActionResult> ConfirmReservationGet(int roomId, DateTime checkInDate, DateTime checkOutDate, int numberOfGuests)
         {
-            // Oturum açmış kullanıcının kimliğini al
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            // Kullanıcının müşteri kimliğini al
-            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.IdentityUserId == userId);
-            if (customer == null)
+            if (!User.Identity.IsAuthenticated)
             {
-                return NotFound("Customer not found for the current user.");
+                return RedirectToAction("Login", "Account");
             }
 
-            // Room ID'ye göre odanın fiyatını ve diğer bilgilerini al
-            var room = await _context.Rooms.FindAsync(roomId);
+            var room = await _context.Rooms.Include(r => r.Hotel).FirstOrDefaultAsync(r => r.RoomId == roomId);
             if (room == null)
             {
-                return NotFound();
+                return NotFound("Room not found.");
             }
 
-            // Yeni rezervasyon oluşturulması
-            var reservation = new Reservation
+            var totalPrice = (decimal)(checkOutDate - checkInDate).TotalDays * room.Price * numberOfGuests;
+
+            var model = new ReservationViewModel
             {
                 RoomId = roomId,
                 CheckInDate = checkInDate,
                 CheckOutDate = checkOutDate,
-                CustomerId = customer.CustomerId,
-                TotalPrice = room.Price, // Odanın fiyatını kullanıyoruz
-                ReservationStatus = "Pending"
+                NumberOfGuests = numberOfGuests,
+                RoomPrice = room.Price,
+                TotalPrice = totalPrice,
+                City = room.Hotel.City,
+                Type = room.Type,
+                // CustomerId alanını burada set etmiyoruz
+            };
+
+            return View("ConfirmReservation", model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ConfirmReservationPost(ReservationViewModel model)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var error in errors)
+                {
+                    Console.WriteLine(error.ErrorMessage); // Loglama
+                }
+                TempData["ErrorMessage"] = "Form verileri geçersiz. Lütfen tekrar deneyin.";
+                return View("ConfirmReservation", model);
+            }
+
+            // Geçici CustomerId ile rezervasyonu ekliyoruz
+            var reservation = new Reservation
+            {
+                RoomId = model.RoomId,
+                CheckInDate = model.CheckInDate.Value,
+                CheckOutDate = model.CheckOutDate.Value,
+                NumberOfGuests = model.NumberOfGuests,
+                TotalPrice = model.TotalPrice,
+                ReservationStatus = "Beklemede",
+                CustomerId = 1 // Geçici CustomerId
             };
 
             _context.Reservations.Add(reservation);
             await _context.SaveChangesAsync();
 
-            // Payment sayfasına yönlendirme
-            return RedirectToAction("Create", "Payments", new { reservationId = reservation.ReservationId, checkInDate = checkInDate, checkOutDate = checkOutDate, numberOfGuests = numberOfGuests });
+            TempData["SuccessMessage"] = "Reservation successfully added.";
+
+            return RedirectToAction("Create", "Payments", new { reservationId = reservation.ReservationId });
         }
 
         [HttpGet]
         public async Task<IActionResult> MyReservations()
         {
-            // Oturum açmış kullanıcının kimliğini al
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            // Kullanıcının müşteri kimliğini al
             var customer = await _context.Customers.FirstOrDefaultAsync(c => c.IdentityUserId == userId);
+
             if (customer == null)
             {
                 return NotFound("Customer not found for the current user.");
             }
 
-            // Kullanıcının rezervasyonlarını al
             var reservations = await _context.Reservations
                 .Where(r => r.CustomerId == customer.CustomerId)
                 .Include(r => r.Room)
