@@ -145,7 +145,7 @@
             <h2 class="mb-4"> - WissenTrips - </h2>
         </div>
         <div>
-            <p>WissenTrips ile en iyi otel rezervasyon deneyimini yaşayın. Size en uygun fiyatları ve en rahat konaklama seçeneklerini sunuyoruz. Dünyanın dört bir yanındaki otelleri keşfedin ve rezervasyonunuzu kolayca yapın. Kullanıcı dostu arayüzümüz ve geniş otel yelpazemizle tatilinizi planlamak artık çok daha kolay. WissenTrips, güvenli ve hızlı rezervasyon süreçleriyle size zaman kazandırır. Konforlu ve keyifli bir konaklama için WissenTrips yanınızda. Tatilinizin tadını çıkarın, gerisini bize bırakın.</p>
+            <p>WissenTrips ile en iyi otel rezervasyon deneyimini yaşayın. Size en uygun fiyatları ve en rahat konaklama seçeneklerini sunuyoruz. Dünyanın dört bir yanındaki otelleri keşfedin ve rezervasyonunuzu kolayca yapın. Kullanıcı dostu arayüzümüz ve geniş otel yelpazemiz ile tatilinizi planlamak artık çok daha kolay. WissenTrips, güvenli ve hızlı rezervasyon süreçleriyle size zaman kazandırır. Konforlu ve keyifli bir konaklama için WissenTrips yanınızda. Tatilinizin tadını çıkarın, gerisini bize bırakın.</p>
         </div>
     </div>
 </section>
@@ -264,6 +264,14 @@
             var forms = document.getElementsByClassName('needs-validation');
             var validation = Array.prototype.filter.call(forms, function (form) {
                 form.addEventListener('submit', function (event) {
+                    var checkInDate = new Date(document.querySelector('input[name="CheckInDate"]').value);
+                    var checkOutDate = new Date(document.querySelector('input[name="CheckOutDate"]').value);
+                    if (checkOutDate <= checkInDate) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        alert('Çıkış tarihi, giriş tarihinden sonraki bir tarih olmalıdır.');
+                    }
+
                     if (form.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();
@@ -328,3 +336,4 @@
         });
     });
 </script>
+

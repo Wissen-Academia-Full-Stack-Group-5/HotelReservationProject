@@ -33,6 +33,11 @@ namespace HotelReservation.Controllers
         [HttpGet]
         public async Task<IActionResult> ConfirmReservationGet(int roomId, DateTime checkInDate, DateTime checkOutDate, int numberOfGuests)
         {
+            if (checkInDate >= checkOutDate)
+            {
+                ModelState.AddModelError("", "Çıkış tarihi, giriş tarihinden sonra olmalıdır.");
+                return RedirectToAction("Index", "Home"); // Ana sayfaya yönlendirme veya uygun bir hata sayfası.
+            }
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
@@ -65,6 +70,7 @@ namespace HotelReservation.Controllers
         [HttpPost]
         public async Task<IActionResult> ConfirmReservationPost(ReservationViewModel model)
         {
+
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");

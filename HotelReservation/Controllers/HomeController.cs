@@ -51,6 +51,23 @@ namespace HotelReservation.Controllers
                     City = City,
                     NumberOfGuests = NumberOfGuests
                 };
+
+                return View("Index", model);
+            }
+
+            if (checkInDate >= checkOutDate)
+            {
+                ModelState.AddModelError("", "Çıkış tarihi, giriş tarihinden sonra olmalıdır.");
+                var cities = await _hotelService.GetCities();
+                var model = new SearchViewModel
+                {
+                    Cities = cities,
+                    CheckInDate = checkInDate,
+                    CheckOutDate = checkOutDate,
+                    City = City,
+                    NumberOfGuests = NumberOfGuests
+                };
+
                 return View("Index", model);
             }
 
@@ -73,9 +90,14 @@ namespace HotelReservation.Controllers
         }
 
 
-
         public async Task<IActionResult> Detail(int id, DateTime checkInDate, DateTime checkOutDate, int numberOfGuests)
         {
+            if (checkInDate >= checkOutDate)
+            {
+                ModelState.AddModelError("", "Çıkış tarihi, giriş tarihinden sonra olmalıdır.");
+                return RedirectToAction("Index", "Home");
+            }
+
             var rooms = await _roomService.GetRoomsByHotel(id, checkInDate, checkOutDate);
             var hotel = await _hotelService.GetHotelById(id);
 
@@ -98,6 +120,7 @@ namespace HotelReservation.Controllers
 
             return View(model);
         }
+
 
 
 
