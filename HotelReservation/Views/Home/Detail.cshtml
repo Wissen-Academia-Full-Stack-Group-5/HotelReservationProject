@@ -63,14 +63,21 @@
                             <hr>
                             <p class="bottom-area d-flex">
                                 <span><i class="icon-map-o"></i> @item.City, @item.Country</span>
-                                <a asp-controller="Reservation" asp-action="ConfirmReservationGet"
-                                   asp-route-roomId="@item.RoomId"
-                                   asp-route-checkInDate="@checkInDate.ToString("yyyy-MM-dd")"
-                                   asp-route-checkOutDate="@checkOutDate.ToString("yyyy-MM-dd")"
-                                   asp-route-numberOfGuests="@numberOfGuests"
-                                   class="btn btn-primary btn-sm">
-                                    Rezervasyon Yap
-                                </a>
+                                @if (item.IsAvailable)
+                                {
+                                    <a asp-controller="Reservation" asp-action="ConfirmReservationGet"
+                                       asp-route-roomId="@item.RoomId"
+                                       asp-route-checkInDate="@checkInDate.ToString("yyyy-MM-dd")"
+                                       asp-route-checkOutDate="@checkOutDate.ToString("yyyy-MM-dd")"
+                                       asp-route-numberOfGuests="@numberOfGuests"
+                                       class="btn btn-primary btn-sm">
+                                        Rezervasyon Yap
+                                    </a>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-secondary btn-sm" disabled>Rezervasyon Yap</button>
+                                }
                             </p>
                         </div>
                     </div>

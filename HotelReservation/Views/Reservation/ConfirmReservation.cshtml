@@ -14,32 +14,7 @@
     <div class="container mt-5">
         <h2>Confirm Reservation</h2>
 
-        <!-- TempData mesajlarını göstermek için -->
-        @if (TempData["SuccessMessage"] != null)
-        {
-            <div class="alert alert-success">
-                @TempData["SuccessMessage"]
-            </div>
-        }
-        @if (TempData["ErrorMessage"] != null)
-        {
-            <div class="alert alert-danger">
-                @TempData["ErrorMessage"]
-            </div>
-        }
-
-        <!-- ModelState hatalarını göstermek için -->
-        @if (!ViewData.ModelState.IsValid)
-        {
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-                    {
-                        <li>@error.ErrorMessage</li>
-                    }
-                </ul>
-            </div>
-        }
+        
 
         <form asp-action="ConfirmReservationPost" method="post">
             <input type="hidden" asp-for="RoomId" />

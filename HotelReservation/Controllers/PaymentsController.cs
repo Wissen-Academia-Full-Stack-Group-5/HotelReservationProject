@@ -68,6 +68,24 @@ namespace HotelReservation.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.FindByIdAsync(userId);
 
+            // Rezervasyon kontrolü
+            var reservation = await _context.Reservations
+                .Include(r => r.Room)
+                .FirstOrDefaultAsync(r => r.ReservationId == model.ReservationId);
+
+            if (reservation == null)
+            {
+                TempData["ErrorMessage"] = "Reservation not found.";
+                return View(model);
+            }
+
+            // Oda müsaitlik kontrolü
+            if (!reservation.Room.IsAvailable)
+            {
+                TempData["ErrorMessage"] = "Oda müsait değil.";
+                return RedirectToAction("Detail", "Home", new { id = reservation.Room.HotelId });
+            }
+
             // Müşteri bilgilerini oluştur
             var customer = new Customer
             {
@@ -88,12 +106,6 @@ namespace HotelReservation.Controllers
             await _context.SaveChangesAsync();
 
             // Rezervasyon güncelleme işlemi
-            var reservation = await _context.Reservations.FirstOrDefaultAsync(r => r.ReservationId == model.ReservationId);
-            if (reservation == null)
-            {
-                TempData["ErrorMessage"] = "Reservation not found.";
-                return View(model);
-            }
             reservation.CustomerId = customer.CustomerId;
 
             // Ödeme bilgilerini kaydet
@@ -119,8 +131,5 @@ namespace HotelReservation.Controllers
             TempData["SuccessMessage"] = "Payment successfully processed.";
             return RedirectToAction("Success", "Success", new { reservationId = reservation.ReservationId });
         }
-
-        
-
     }
 }
