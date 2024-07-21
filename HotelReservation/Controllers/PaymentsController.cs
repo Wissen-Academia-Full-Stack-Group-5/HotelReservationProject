@@ -56,6 +56,11 @@ namespace HotelReservation.Controllers
         {
             if (!ModelState.IsValid)
             {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var error in errors)
+                {
+                    Console.WriteLine(error.ErrorMessage); // Loglama
+                }
                 TempData["ErrorMessage"] = "Form verileri geçersiz. Lütfen tekrar deneyin.";
                 return View(model);
             }
@@ -102,22 +107,20 @@ namespace HotelReservation.Controllers
 
             _context.Payments.Add(payment);
 
-            // Eğer ödeme yöntemi "Nakit" değilse, rezervasyon durumunu "Onaylandı" olarak güncelle
+            // Rezervasyon durumunu "Onaylandı" olarak güncelle
             if (model.PaymentMethod != "Nakit")
             {
                 reservation.ReservationStatus = "Onaylandı";
             }
 
+            // Save changes to both Reservation and Payment
             await _context.SaveChangesAsync();
 
             TempData["SuccessMessage"] = "Payment successfully processed.";
-            return RedirectToAction("Success");
+            return RedirectToAction("Success", "Success", new { reservationId = reservation.ReservationId });
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Success()
-        {
-            return View(Success);
-        }
+        
+
     }
 }
