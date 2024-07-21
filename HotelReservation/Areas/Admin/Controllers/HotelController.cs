@@ -18,7 +18,7 @@ public class HotelController : Controller
         _hotelRepository = hotelRepository;
         _roomService = roomService;
     }
-    [Authorize(Roles = "SuperAdmin,Admin")]
+    //[Authorize(Roles = "SuperAdmin,Admin")]
     public async Task<IActionResult> Index()
     {
         var hotel = await _hotelService.GetAll();

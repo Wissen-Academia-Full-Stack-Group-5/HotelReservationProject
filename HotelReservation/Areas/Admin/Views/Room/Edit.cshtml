@@ -6,8 +6,11 @@
 
 <h2>Edit Room</h2>
 
-
 <form asp-area="Admin" asp-controller="Room" asp-action="Edit" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="HotelId" />
+    <input type="hidden" asp-for="RoomId">
+
     <div class="form-group">
         <label asp-for="RoomNumber" class="control-label"></label>
         <input asp-for="RoomNumber" class="form-control" />
@@ -29,10 +32,16 @@
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="IsAvailable" class="control-label"></label>
-        <input asp-for="IsAvailable" class="form-control" />
-        <span asp-validation-for="IsAvailable" class="text-danger"></span>
+        <label asp-for="Country" class="control-label"></label>
+        <input asp-for="Country" class="form-control" />
+        <span asp-validation-for="Country" class="text-danger"></span>
     </div>
+    <div class="form-group">
+        <label asp-for="City" class="control-label"></label>
+        <input asp-for="City" class="form-control" />
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+
     <div class="form-group">
         <label asp-for="PictureUrl" class="control-label"></label>
         <input asp-for="PictureUrl" class="form-control" />
@@ -52,7 +61,3 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index", new { hotelId = Model.HotelId })
-</div>

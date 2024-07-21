@@ -13,6 +13,40 @@
 <html lang="en">
 <head>
     <title>WissenTrips</title>
+    <style>
+        .blurred {
+            filter: blur(2px);
+        }
+
+        .overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            color: red;
+            font-size: 1.5rem;
+            white-space: nowrap;
+        }
+
+        .destination {
+            position: relative;
+        }
+
+            .destination .img {
+                display: block;
+                width: 100%;
+                height: 200px;
+                background-size: cover;
+                background-position: center center;
+            }
+
+            .destination .img-container {
+                position: relative;
+            }
+    </style>
 </head>
 <body>
     <div class="hero-wrap js-fullheight" style="background-image: url('/themes/images/bg_1.jpg');">
@@ -20,7 +54,7 @@
         <div class="container">
             <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
                 <div class="col-md-9 text-center ftco-animate" data-scrollax="properties: { translateY: '70%' }">
-                    <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a asp-controller="Home" asp-action="Index">Anasayfa</a></span> <span>Hotel</span></p>
+                    <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a asp-controller="Home" asp-action="Index">Anasayfa</a></span></p>
                     <h1 class="mb3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Odalar</h1>
                 </div>
             </div>
@@ -40,12 +74,18 @@
             {
                 <div class="col-md-4 hotel-single ftco-animate mb-5 mt-4">
                     <div class="destination">
-                        <a asp-controller="Reservation" asp-action="ConfirmReservationGet"
-                           asp-route-roomId="@item.RoomId"
-                           asp-route-checkInDate="@checkInDate.ToString("yyyy-MM-dd")"
-                           asp-route-checkOutDate="@checkOutDate.ToString("yyyy-MM-dd")"
-                           asp-route-numberOfGuests="@numberOfGuests"
-                           class="img img-2" style="background-image: url(@item.PictureUrl);"></a>
+                        <div class="img-container">
+                            <a asp-controller="Reservation" asp-action="ConfirmReservationGet"
+                               asp-route-roomId="@item.RoomId"
+                               asp-route-checkInDate="@checkInDate.ToString("yyyy-MM-dd")"
+                               asp-route-checkOutDate="@checkOutDate.ToString("yyyy-MM-dd")"
+                               asp-route-numberOfGuests="@numberOfGuests"
+                               class="img @(item.IsAvailable ? "" : "blurred")" style="background-image: url(@item.PictureUrl);"></a>
+                            @if (!item.IsAvailable)
+                            {
+                                <div class="overlay-text">Oda müsait değil! 😢</div>
+                            }
+                        </div>
                         <hr />
                         <div class="text">
                             <div class="d-flex">
@@ -61,22 +101,24 @@
                                 </div>
                             </div>
                             <hr>
-                            <p class="bottom-area d-flex">
+                            <p class="bottom-area d-flex justify-content-between">
                                 <span><i class="icon-map-o"></i> @item.City, @item.Country</span>
                                 @if (item.IsAvailable)
                                 {
-                                    <a asp-controller="Reservation" asp-action="ConfirmReservationGet"
-                                       asp-route-roomId="@item.RoomId"
-                                       asp-route-checkInDate="@checkInDate.ToString("yyyy-MM-dd")"
-                                       asp-route-checkOutDate="@checkOutDate.ToString("yyyy-MM-dd")"
-                                       asp-route-numberOfGuests="@numberOfGuests"
-                                       class="btn btn-primary btn-sm">
-                                        Rezervasyon Yap
-                                    </a>
+                                    <span class="ml-auto">
+                                        <a asp-controller="Reservation" asp-action="ConfirmReservationGet"
+                                           asp-route-roomId="@item.RoomId"
+                                           asp-route-checkInDate="@checkInDate.ToString("yyyy-MM-dd")"
+                                           asp-route-checkOutDate="@checkOutDate.ToString("yyyy-MM-dd")"
+                                           asp-route-numberOfGuests="@numberOfGuests"
+                                           class="btn btn-primary btn-sm">
+                                            Rezervasyon Yap
+                                        </a>
+                                    </span>
                                 }
                                 else
                                 {
-                                    <button class="btn btn-secondary btn-sm" disabled>Rezervasyon Yap</button>
+                                    <span class="ml-auto text-danger">Oda müsait değil! 😢</span>
                                 }
                             </p>
                         </div>

@@ -35,7 +35,7 @@
                             <td>@item.Rating</td>
                             <td> <a class=" nav-link bg-danger bg-danger-50 text-white d-inline-block rounded" asp-controller="Hotel" asp-action="Edit" asp-area="Admin" asp-route-id="@item.HotelId">GÃ¼ncelle</a></td>
                             <td> <a class=" nav-link bg-danger bg-danger-50 text-white d-inline-block rounded" asp-controller="Hotel" asp-action="Delete" asp-area="Admin" asp-route-id="@item.HotelId">Sil</a></td>
-                            <td> <a class=" nav-link bg-danger bg-danger-50 text-white d-inline-block rounded" asp-controller="Hotel" asp-action="Room" asp-area="Admin" asp-route-id="@item.HotelId">Odalar</a></td>
+                            <td> <a class=" nav-link bg-danger bg-danger-50 text-white d-inline-block rounded" asp-controller="Room" asp-action="Index" asp-area="Admin" asp-route-id="@item.HotelId">Odalar</a></td>
 
                         </tr>
                     }

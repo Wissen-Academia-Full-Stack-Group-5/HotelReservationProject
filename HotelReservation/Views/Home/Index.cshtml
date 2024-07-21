@@ -34,7 +34,6 @@
         </div>
     </div>
 </div>
-
 <section class="ftco-section justify-content-end ftco-search">
     <div class="container-wrap ml-auto">
         <div class="row no-gutters">
@@ -42,8 +41,8 @@
                 <div class="tab-content p-4 px-5" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-performance-tab">
                         <form asp-action="Filter" asp-controller="Home" method="get" class="search-destination needs-validation" novalidate>
-                            <div class="row">
-                                <div class="col-md align-items-end">
+                            <div class="row align-items-end">
+                                <div class="col-md">
                                     <div class="form-group">
                                         <label asp-for="CheckInDate">Giriş</label>
                                         <div class="form-field">
@@ -53,7 +52,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md align-items-end">
+                                <div class="col-md">
                                     <div class="form-group">
                                         <label asp-for="CheckOutDate">Çıkış</label>
                                         <div class="form-field">
@@ -63,7 +62,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md align-items-end">
+                                <div class="col-md">
                                     <div class="form-group">
                                         <label asp-for="City">Nereye</label>
                                         <div class="form-field">
@@ -81,27 +80,25 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md align-items-end">
+                                <div class="col-md">
                                     <div class="form-group">
                                         <label asp-for="NumberOfGuests">Kişi Sayısı</label>
-                                        <div class="form-field">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <button type="button" class="btn btn-outline-secondary" id="decreaseGuests">-</button>
-                                                </div>
-                                                <input type="text" asp-for="NumberOfGuests" class="form-control text-center" value="1" readonly required>
-                                                <div class="input-group-append">
-                                                    <button type="button" class="btn btn-outline-secondary" id="increaseGuests">+</button>
-                                                </div>
-                                                <div class="invalid-feedback">Kişi sayısını girin.</div>
+                                        <div class="form-field d-flex">
+                                            <div class="input-group-prepend">
+                                                <button type="button" class="btn btn-outline-secondary btn-sm" id="decreaseGuests">-</button>
                                             </div>
+                                            <input type="text" asp-for="NumberOfGuests" class="form-control text-center" value="1" readonly required>
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-outline-secondary btn-sm" id="increaseGuests">+</button>
+                                            </div>
+                                            <div class="invalid-feedback">Kişi sayısını girin.</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md align-self-end">
+                                <div class="col-md">
                                     <div class="form-group">
                                         <div class="form-field">
-                                            <input type="submit" value="Search" class="form-control btn btn-primary">
+                                            <input type="submit" value="Ara" class="form-control btn btn-primary">
                                         </div>
                                     </div>
                                 </div>
@@ -145,7 +142,7 @@
             <h2 class="mb-4"> - WissenTrips - </h2>
         </div>
         <div>
-            <p>WissenTrips ile en iyi otel rezervasyon deneyimini yaşayın. Size en uygun fiyatları ve en rahat konaklama seçeneklerini sunuyoruz. Dünyanın dört bir yanındaki otelleri keşfedin ve rezervasyonunuzu kolayca yapın. Kullanıcı dostu arayüzümüz ve geniş otel yelpazemiz ile tatilinizi planlamak artık çok daha kolay. WissenTrips, güvenli ve hızlı rezervasyon süreçleriyle size zaman kazandırır. Konforlu ve keyifli bir konaklama için WissenTrips yanınızda. Tatilinizin tadını çıkarın, gerisini bize bırakın.</p>
+            <p>WissenTrips ile en iyi otel rezervasyon deneyimini yaşayın. Size en uygun fiyatları ve en rahat konaklama seçeneklerini sunuyoruz. Dünyanın dört bir yanındaki otelleri keşfedin ve rezervasyonunuzu kolayca yapın. Kullanıcı dostu arayüzümüz ve geniş otel yelpazemizle tatilinizi planlamak artık çok daha kolay. WissenTrips, güvenli ve hızlı rezervasyon süreçleriyle size zaman kazandırır. Konforlu ve keyifli bir konaklama için WissenTrips yanınızda. Tatilinizin tadını çıkarın, gerisini bize bırakın.</p>
         </div>
     </div>
 </section>
@@ -198,7 +195,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="row">
-                    <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+                    <div class="col-md-4 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18 text-center">
                             <div class="text">
                                 <strong class="number" data-number="100000">0</strong>
@@ -206,7 +203,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+                    <div class="col-md-4 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18 text-center">
                             <div class="text">
                                 <strong class="number" data-number="40000">0</strong>
@@ -214,19 +211,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+                    <div class="col-md-4 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18 text-center">
                             <div class="text">
                                 <strong class="number" data-number="87000">0</strong>
                                 <span>Hotels</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
-                        <div class="block-18 text-center">
-                            <div class="text">
-                                <strong class="number" data-number="56400">0</strong>
-                                <span>Restaurant</span>
                             </div>
                         </div>
                     </div>
@@ -235,6 +224,7 @@
         </div>
     </div>
 </section>
+
 <section class="ftco-section-parallax">
     <div class="parallax-img d-flex align-items-center">
         <div class="container">
@@ -336,4 +326,3 @@
         });
     });
 </script>
-

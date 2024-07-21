@@ -19,7 +19,14 @@ namespace Entity.Services
         Task Delete(int id);
         Task Update(RoomViewModel model);
         Task<List<RoomViewModel>> Get(int HotelId);
-        Task Add(RoomViewModel model);
+        Task<bool> Add(RoomViewModel roomViewModel);
 
+        Task<List<RoomViewModel>> GetRoomsRoomId(int RoomId);
+        
+        Task<RoomViewModel> DeleteRoom(int RoomId);
+
+       
+ 
+        Task<bool> AddRoom(RoomViewModel roomViewModel);
     }
 }

@@ -164,7 +164,7 @@ namespace HotelReservation.Controllers
 
             if (customer == null)
             {
-                return NotFound("Customer not found for the current user.");
+                return View();
             }
 
             var reservations = await _context.Reservations

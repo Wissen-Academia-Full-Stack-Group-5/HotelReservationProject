@@ -7,35 +7,40 @@
 <h1>Room</h1>
 
 <table class="table">
+    <a class=" nav-link bg-danger bg-danger-50 text-white d-inline-block rounded" asp-controller="Room" asp-action="Add" asp-area="Admin" asp-route-id="@Model.First().HotelId">Oda Ekle</a>
     <thead>
         <tr>
-            <th>Hotel Id</th>
-            <th>RoomId</th>
+            @* <th>Hotel Id</th>
+            <th>RoomId</th> *@
             <th>RoomNumber</th>
             <th>PictureUrl</th>
             <th>City</th>
             <th>Price</th>
             <th>Type</th>
             <th>Description</th>
-            <th></th>
-            <th></th>
+            <th>Country</th>
+            <th>City</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
+            @* <a class=" nav-link bg-danger bg-danger-50 text-white d-inline-block rounded" asp-controller="Room" asp-action="Add" asp-area="Admin" asp-route-id="@item.HotelId">Oda Ekle</a> *@
             <tr>
-                <td>@item.HotelId</td>
-                <td>@item.RoomId</td>
+                @* <td>@item.HotelId</td>
+            <td>@item.RoomId</td> *@
                 <td>@item.RoomNumber</td>
                 <td>@item.PictureUrl</td>
                 <td>@item.City</td>
                 <td>@item.Price</td>
                 <td>@item.Type</td>
                 <td>@item.Description</td>
-                <td> <a class=" nav-link bg-danger bg-danger-50 text-white d-inline-block rounded" asp-controller="Room" asp-action="Edit" asp-area="Admin" asp-route-id="@item.RoomId">GÃ¼ncelle</a></td>
+                <td>@item.Country</td>
+                <td>@item.City</td>
+                <td> <a class=" nav-link bg-danger bg-danger-50 text-white d-inline-block rounded" asp-controller="Room" asp-action="Edit" asp-area="Admin" asp-route-id="@item.RoomId">Güncelle</a></td>
                 <td> <a class=" nav-link bg-danger bg-danger-50 text-white d-inline-block rounded" asp-controller="Room" asp-action="Delete" asp-area="Admin" asp-route-id="@item.RoomId">Sil</a></td>
             </tr>
         }
     </tbody>
 </table>
+

@@ -79,9 +79,40 @@ public class RoomService : IRoomService
 
         return rooms;
     }
-    public Task Add(RoomViewModel model)
+    public async Task<bool> Add(RoomViewModel roomViewModel)
     {
-        throw new NotImplementedException();
+        try
+        {
+            // RoomViewModel'den Room nesnesi oluştur
+            var room = new Room
+            {
+                HotelId = roomViewModel.HotelId,
+                RoomNumber = roomViewModel.RoomNumber,
+                Type = roomViewModel.Type,
+                Price = roomViewModel.Price,
+                Description = roomViewModel.Description,
+                IsAvailable = roomViewModel.IsAvailable,
+                PictureUrl = roomViewModel.PictureUrl,
+                City = roomViewModel.City,
+                Country = roomViewModel.Country
+            };
+
+            // Veritabanına yeni Room nesnesini ekle
+            await _context.Rooms.AddAsync(room);
+
+            // Değişiklikleri kaydet
+            await _context.SaveChangesAsync();
+
+            // Ekleme işlemi başarılı ise true döndür
+            return true;
+        }
+        catch (Exception ex)
+        {
+            // Hata mesajı logla
+            Console.WriteLine($"Oda ekleme işlemi sırasında hata oluştu: {ex.Message}");
+            // Hata durumu için false döndür
+            return false;
+        }
     }
 
     public async Task<List<RoomViewModel>> Get(int hotelId)
@@ -159,5 +190,83 @@ public class RoomService : IRoomService
         _context.Rooms.Remove(existingHotel);
         await unitOfWork.CommitAsync();
 
+    }
+
+    public async Task<List<RoomViewModel>> GetRoomsRoomId(int hotelId)
+    {
+        return await _context.Rooms
+      .Where(r => r.HotelId == hotelId)
+      .Select(r => new RoomViewModel
+      {
+          RoomId = r.RoomId,
+          HotelId = r.HotelId,
+          RoomNumber = r.RoomNumber,
+          Type = r.Type,
+          Price = r.Price,
+          Description = r.Description,
+          IsAvailable = r.IsAvailable,
+          PictureUrl = r.PictureUrl,
+          City = r.Hotel.City,
+          Country = r.Hotel.Country
+      })
+      .ToListAsync();
+    }
+
+    public async Task<RoomViewModel> DeleteRoom(int RoomId)
+    {
+        var room = await _context.Rooms.FindAsync(RoomId);
+
+        if (room == null)
+        {
+            return null; // veya  return new RoomViewModel(); 
+        }
+        _context.Rooms.Remove(room);
+        await _context.SaveChangesAsync();
+
+        // Silinen odayı temsil eden yeni bir RoomViewModel oluştur
+        var deletedRoom = new RoomViewModel
+        {
+            RoomId = room.RoomId,
+            // Diğer gerekli property'leri kopyala
+        };
+
+        return deletedRoom; // Silinen odayı temsil eden yeni nesneyi döndür
+    }
+
+    public async Task<bool> AddRoom(RoomViewModel roomViewModel)
+    {
+        
+        try
+        {
+            // RoomViewModel'den Room nesnesi oluştur
+            var room = new Room
+            {
+                HotelId = roomViewModel.HotelId,
+                RoomNumber = roomViewModel.RoomNumber,
+                Type = roomViewModel.Type,
+                Price = roomViewModel.Price,
+                Description = roomViewModel.Description,
+                IsAvailable = roomViewModel.IsAvailable,
+                PictureUrl = roomViewModel.PictureUrl,
+                City = roomViewModel.City,
+                Country = roomViewModel.Country
+            };
+
+            // Veritabanına yeni Room nesnesini ekle
+            await _context.Rooms.AddAsync(room);
+
+            // Değişiklikleri kaydet
+            await _context.SaveChangesAsync();
+
+            // Ekleme işlemi başarılı ise true döndür
+            return true;
+        }
+        catch (Exception ex)
+        {
+            // Hata mesajı logla
+            Console.WriteLine($"Oda ekleme işlemi sırasında hata oluştu: {ex.Message}");
+            // Hata durumu için false döndür
+            return false;
+        }
     }
 }

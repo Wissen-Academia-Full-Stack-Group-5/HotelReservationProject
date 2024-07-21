@@ -20,9 +20,27 @@
 <br />
 <hr />
 <br />
+
+@{
+    var displayedCities = new HashSet<string>();
+}
+
 <div class="container">
     <div class="row">
+        <div class="col-12">
+            @foreach (var item in Model)
+            {
+                if (displayedCities.Add(item.City))
+                {
+                    <h1 class="mb-3 bread text-uppercase" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }" style="text-align: center; letter-spacing: 2px;">
+                        @item.City
+                    </h1>
 
+                }
+            }
+        </div>
+    </div>
+    <div class="row">
         @foreach (var item in Model)
         {
             <div class="col-sm col-md-6 col-lg-4 mb-4 ftco-animate">
@@ -35,16 +53,13 @@
                     <div class="text p-3">
                         <div class="d-flex">
                             <div class="one">
-                                <h3><a href="#">@item.Name</a></h3>
+                                <h3><a asp-controller="Home" asp-action="Detail" asp-route-id="@item.HotelId">@item.Name</a></h3>
                             </div>
-
                         </div>
 
                         <hr>
                         <p class="bottom-area d-flex">
                             <span>@(string.IsNullOrEmpty(item.Address) ? "Adres bilgisi yok" : item.Address)</span>
-                            @* Adres bilgisi null gelirse adres bilgisi yok  ile test ediyoruz. Normalde item.Address olması gerekiyor.  *@
-
                             <span class="ml-auto">
                                 <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.HotelId" asp-route-checkInDate="@ViewData["CheckInDate"]" asp-route-checkOutDate="@ViewData["CheckOutDate"]" asp-route-numberOfGuests="@ViewData["NumberOfGuests"]" class="btn btn-primary btn-sm ">Odaları Görüntüle </a>
                             </span>
@@ -53,7 +68,5 @@
                 </div>
             </div>
         }
-
     </div>
-
 </div>

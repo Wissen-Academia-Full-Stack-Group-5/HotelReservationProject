@@ -18,9 +18,11 @@ namespace Entity.Entites
         public string Description { get; set; }
         public bool IsAvailable { get; set; }
 		public string PictureUrl { get; set; } = "";
+        public string? City { get; set; }
+        public string? Country { get; set; }
 
-		// Navigation Properties
-		public Hotel Hotel { get; set; }
+        // Navigation Properties
+        public Hotel Hotel { get; set; }
         public ICollection<Reservation> Reservations { get; set; }
     }
 }
