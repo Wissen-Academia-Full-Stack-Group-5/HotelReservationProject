@@ -115,22 +115,24 @@ public class RoomService : IRoomService
         }
     }
 
-    public async Task<List<RoomViewModel>> Get(int hotelId)
+    public async Task<List<RoomViewModel>> Get(int HotelId)
     {
         var rooms = await _context.Rooms
-    .Where(r => r.HotelId == hotelId) // HotelId ile filtreleme yapıyoruz
-    .Select(r => new RoomViewModel
-    {
-        RoomId = r.RoomId,
-        HotelId = r.HotelId,
-        Description = r.Description,
-        Price = r.Price,
-        PictureUrl = r.PictureUrl,
-        City = r.Hotel.City,
-        Country = r.Hotel.Country
-        // Diğer özellikler
-    })
-    .ToListAsync();
+        .Where(r => r.HotelId == HotelId)
+        .Select(r => new RoomViewModel
+        {
+            RoomId = r.RoomId,
+            HotelId = r.HotelId,
+            RoomNumber = r.RoomNumber,
+            Type = r.Type,
+            Price = r.Price,
+            Description = r.Description,
+            IsAvailable = r.IsAvailable,
+            PictureUrl = r.PictureUrl,
+            City = r.Hotel.City,
+            Country = r.Hotel.Country
+        })
+        .ToListAsync();
 
         return rooms;
 

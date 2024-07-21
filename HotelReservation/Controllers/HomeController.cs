@@ -112,6 +112,7 @@ namespace HotelReservation.Controllers
                 City = hotel.City,
                 Country = hotel.Country,
                 PictureUrl = room.PictureUrl
+                
             }).ToList();
 
             ViewData["CheckInDate"] = checkInDate.ToString("yyyy-MM-dd");
