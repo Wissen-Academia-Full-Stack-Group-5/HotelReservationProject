@@ -6,52 +6,81 @@
 }
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
-    <title>Confirm Reservation</title>
+    <title>Rezervasyonunu Onayla</title>
+    <style>
+        .btn-primary {
+            position: relative;
+            z-index: 10; 
+        }
+        
+        .container {
+            position: relative;
+            z-index: 10; 
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h2>Confirm Reservation</h2>
+    <div>
+        <div class="hero-wrap js-fullheight" style="background-image: url('/themes/images/oceanview.jpg');">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+                    <div class="col-md-9 text-center ftco-animate" data-scrollax="properties: { translateY: '70%' }">
+                        <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a asp-controller="Home" asp-action="Index">Anasayfa</a></span> </p>
+                        <h1 class="mb3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Rezervasyonunuzu <br /> Onaylayın    </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        
+        <br />
+    </div>
+
+
+    <div class="container mt-5">
+        <h2>Rezervasyonunu Onayla</h2>
+
+
+
 
         <form asp-action="ConfirmReservationPost" method="post">
             <input type="hidden" asp-for="RoomId" />
             <input type="hidden" asp-for="CustomerId" />
             <div class="form-group">
-                <label>Check-In Date</label>
+                <label>Giriş Tarihi</label>
                 <input type="text" class="form-control" asp-for="CheckInDate" readonly />
             </div>
             <div class="form-group">
-                <label>Check-Out Date</label>
+                <label>Çıkış Tarihi</label>
                 <input type="text" class="form-control" asp-for="CheckOutDate" readonly />
             </div>
             <div class="form-group">
-                <label>Number of Guests</label>
+                <label>Kişi Sayısı</label>
                 <input type="text" class="form-control" asp-for="NumberOfGuests" readonly />
             </div>
             <div class="form-group">
-                <label>Room Price</label>
+                <label>Oda Tutarı</label>
                 <input type="text" class="form-control" asp-for="RoomPrice" readonly />
             </div>
             <div class="form-group">
-                <label>Total Price</label>
+                <label>Toplam Tutar</label>
                 <input type="text" class="form-control" asp-for="TotalPrice" readonly />
             </div>
             <div class="form-group">
-                <label>City</label>
+                <label>Şehir</label>
                 <input type="text" class="form-control" asp-for="City" readonly />
             </div>
             <div class="form-group">
-                <label>Type</label>
+                <label>Oda Tipi</label>
                 <input type="text" class="form-control" asp-for="Type" readonly />
             </div>
             <div class="form-group">
-                <label>Reservation Status</label>
+                <label>Rezervasyon Durumu</label>
                 <input type="text" class="form-control" asp-for="ReservationStatus" readonly />
             </div>
-            <button type="submit" class="btn btn-primary">Confirm and Proceed to Payment</button>
+            <button type="submit" class="btn btn-primary">Onayla ve Ödemeye Devam Et</button>
         </form>
     </div>
 </body>
